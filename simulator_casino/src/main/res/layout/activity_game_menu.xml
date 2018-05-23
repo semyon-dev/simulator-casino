@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Выберите игру :"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="24sp"/>
+
+    <FrameLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <ImageButton
+            android:id="@+id/btn_game_cards"
+            android:paddingLeft="260dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/karts" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Карты"
+            android:textSize="40sp" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btn_game_777"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:paddingLeft="260dp"
+            android:src="@drawable/machine" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="35dp"
+            android:text="777"
+            android:textSize="40sp" />
+
+    </FrameLayout>
+
+</LinearLayout>

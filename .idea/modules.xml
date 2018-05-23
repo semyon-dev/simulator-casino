@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SimulatorCasino.iml" filepath="$PROJECT_DIR$/SimulatorCasino.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simulator_casino/simulator_casino.iml" filepath="$PROJECT_DIR$/simulator_casino/simulator_casino.iml" />
+    </modules>
+  </component>
+</project>
