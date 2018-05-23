@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,9 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Выберите игру :"
+        android:text="@string/choose_game"
         android:textColor="@android:color/holo_green_dark"
-        android:textSize="24sp"/>
+        android:textSize="35sp"/>
 
     <FrameLayout
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:layout_marginTop="35dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Карты"
+            android:text="@string/cards"
             android:textSize="40sp" />
 
     </FrameLayout>

@@ -3,4 +3,11 @@
     <string name="about_game">Об игре</string>
     <string name="settings">Настройки</string>
     <string name="play">Играть</string>
+    <string name="version">Версия: 0.1.0 BETA</string>
+    <string name="author">Автор : Семён Новиков</string>
+    <string name="cards">Карты</string>
+    <string name="choose_game">Выберите игру :</string>
+    <string name="balance">Баланс :</string>
+    <string name="hurray">Ура!</string>
+    <string name="win">Вы выиграли</string>
 </resources>

@@ -20,20 +20,6 @@ public class Game777_Logic {
         return PicName;
     }
 
-   /* public int Compare1() {
-
-        int max = 0;
-        Arrays.sort(CardsArray); // сортируем массив
-
-        for (int i = 0; i <= 5; i++) {
-            for (int i2 = 1; i <= 4; i++) {
-                if (CardsArray[i] == CardsArray[i2]) {
-                    max++;
-                }
-            }
-        }
-  } */
-
 public int Compare() {       // функция нахождения максимального кол-во повторяющихся картинок
 
     Arrays.sort(CardsArray); // сортируем массив

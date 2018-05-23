@@ -42,8 +42,8 @@ public class MainMenu extends Activity {
         public void onClick(View v) {
 
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainMenu.this);
-            mBuilder.setTitle("Информация")
-                    .setMessage("Автор : Новиков Семён \nВерсия : " + getString(R.string.version))
+            mBuilder.setTitle(getString(R.string.about_game))
+                    .setMessage(getString(R.string.author)  + "\n" + getString(R.string.version))
                     // .setIcon(R.drawable.green)
                     .setCancelable(true)
                     .setNegativeButton("ОК", new DialogInterface.OnClickListener() {

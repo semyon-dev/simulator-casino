@@ -116,16 +116,16 @@ public class GameCards extends Activity {
             if (s1.equals(s2) &  s2.equals(s3) ) {     //если все картинки одинаковые
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCards.this);  //выводим сообщение о выиграше
-                mBuilder.setTitle("Вы выиграли!")
-                        .setMessage("Ура! +500")
-                        // .setIcon(R.drawable.green)       //ПОСТАВИТЬ ИКОНКУ!! --------------------------
-                        .setCancelable(false)
-                        .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();      //закрытие окна
-                            }
-                        });
+                mBuilder.setTitle(getString(R.string.hurray))
+                            .setMessage(getString(R.string.win) + " 500")
+                            // .setIcon(R.drawable.green)       //ПОСТАВИТЬ ИКОНКУ!! --------------------------
+                            .setCancelable(false)
+                            .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();      //закрытие окна
+                                }
+                            });
 
                 AlertDialog malert = mBuilder.create();
                 malert.show();

@@ -16,7 +16,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Баланс :"
+            android:text="@string/balance"
             android:textColor="@android:color/holo_green_dark"
             android:textSize="24sp" />
 

@@ -38,9 +38,6 @@ public class Game777 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_777);
 
-
-        //MyGame777.CardsArray[];
-
         txt_balans = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы
         txt_balans.setText("3000");                              // начальный баланс
 
@@ -57,7 +54,7 @@ public class Game777 extends Activity {
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
                 ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(100);
-       // animation.setRepeatMode(Animation.INFINITE);
+       // animation.setRepeatMode(Animation.INFINITE); // бесконечная анимация
     }
     // создаем обработчик нажатия
     View.OnClickListener btn_play_Click = new View.OnClickListener() {
@@ -84,9 +81,9 @@ public class Game777 extends Activity {
                 @Override
                 public void run() {
                     n++;
-                    if (n == 52) {                  // таймер выполняется 90 раз
-                        n = 0;                      // сбрасываем счётчик
-                        mTimer.cancel();            // прерываем таймер
+                    if (n == 52) {                   // таймер выполняется 90 раз
+                        n = 0;                       // сбрасываем счётчик
+                        mTimer.cancel();             // прерываем таймер
                         sum = MyGame777.Compare();   // метод сравнивания картинок
                         balans_edit(sum);
                         if(sum>0){
@@ -148,8 +145,8 @@ public class Game777 extends Activity {
 
     void dialog(int sum) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Game777.this);  //выводим сообщение о выиграше
-        mBuilder.setTitle("Ура!")
-                .setMessage("Вы выиграли " + sum)
+        mBuilder.setTitle(getString(R.string.hurray))
+                .setMessage(getString(R.string.win) + " " + sum)
                 // .setIcon(R.drawable.green)       //ПОСТАВИТЬ ИКОНКУ!! --------------------------
                 .setCancelable(false)
                 .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
