@@ -10,4 +10,7 @@
     <string name="balance">Баланс :</string>
     <string name="hurray">Ура!</string>
     <string name="win">Вы выиграли</string>
+    <string name="language">Язык</string>
+    <string name="change_language">Нажмите для изменения языка</string>
+    <string name="choose_language">Выберите язык</string>
 </resources>

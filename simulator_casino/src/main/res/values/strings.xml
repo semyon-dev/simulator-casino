@@ -10,4 +10,7 @@
     <string name="hurray">Hurray!</string>
     <string name="win">You win</string>
     <string name="balance">Balance :</string>
+    <string name="language">Language</string>
+    <string name="change_language">Click to change the language</string>
+    <string name="choose_language">Choose language</string>
 </resources>

@@ -8,26 +8,40 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainMenu"
+            android:configChanges="locale">
 
-    <activity android:name=".MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity
+            android:configChanges="locale"
             android:name=".GameMenu">
         </activity>
+
         <activity
+            android:configChanges="locale"
             android:name=".GameCards"
             android:screenOrientation="portrait">
+
         </activity>
         <activity
+            android:configChanges="locale"
             android:name=".Game777"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape">
         </activity>
-    </application>
 
+        <activity
+            android:configChanges="locale"
+            android:name=".Settings"
+            android:screenOrientation="portrait">
+        </activity>
+
+    </application>
 </manifest>
