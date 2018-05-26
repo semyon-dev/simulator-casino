@@ -12,7 +12,7 @@
         android:gravity="center"
         android:text="@string/app_name"
         android:textColor="@android:color/holo_green_dark"
-        android:textSize="30sp" />
+        android:textSize="33sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="35dp"
             android:text="@string/play"
-            android:textSize="35sp" />
+            android:textSize="33sp" />
 
     </FrameLayout>
 
@@ -54,7 +54,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="35dp"
             android:text="@string/settings"
-            android:textSize="35sp" />
+            android:textSize="33sp" />
 
     </FrameLayout>
 
@@ -76,7 +76,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="35dp"
             android:text="@string/about_game"
-            android:textSize="35sp" />
+            android:textSize="33sp" />
 
     </FrameLayout>
 </LinearLayout>

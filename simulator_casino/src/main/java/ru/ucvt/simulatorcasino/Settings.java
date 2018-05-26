@@ -1,7 +1,5 @@
 package ru.ucvt.simulatorcasino;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +13,11 @@ import java.util.Locale;
 public class Settings extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener  {
 
     Context context;
-    public SharedPreferences preference;
+
+    SharedPreferences language_pref;
+    public static final String APP_LANGUAGE = "language";
+
+    public SharedPreferences pref; //???
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +25,22 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
         addPreferencesFromResource(R.xml.activity_settings);
 
         context = getApplicationContext();
-        preference = PreferenceManager.getDefaultSharedPreferences(context);
+        pref = PreferenceManager.getDefaultSharedPreferences(context);
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
     }
 
     // функция изменения и сохранения настроек языка
     void set_language(String languageToLoad){
+
+        language_pref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = language_pref.edit();
+        edit.putString(APP_LANGUAGE, languageToLoad);
+        edit.commit();
+
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit_pref = pref.edit();
+        edit_pref.putString(APP_LANGUAGE, languageToLoad);
+        edit_pref.commit();
 
         Configuration config = getBaseContext().getResources().getConfiguration();
         Locale locale = new Locale(languageToLoad);
@@ -36,22 +48,21 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
 
-        // полный перезапуск приложения
-        Intent mStartActivity = new Intent(context, MainMenu.class);
-        int mPendingIntentId = 123456;
-        PendingIntent mPendingIntent = PendingIntent.getActivity(context, mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-        System.exit(0);
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+
+        Intent intent_main = new Intent(Settings.this, MainMenu.class);
+        startActivity(intent_main);
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-        if (preference.getString("language","English").contains("English")){
+        if (pref.getString("language","English").contains("English")){
             set_language("en");
         }
-        else{
+        else if (pref.getString("language","English").contains("Русский")){
             set_language("ru");
         }
     }

@@ -11,7 +11,7 @@
         android:gravity="center_horizontal"
         android:text="@string/choose_game"
         android:textColor="@android:color/holo_green_dark"
-        android:textSize="35sp"/>
+        android:textSize="33sp"/>
 
     <FrameLayout
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cards"
-            android:textSize="40sp" />
+            android:textSize="33sp" />
 
     </FrameLayout>
 
@@ -53,7 +53,7 @@
             android:layout_marginLeft="35dp"
             android:layout_marginTop="35dp"
             android:text="777"
-            android:textSize="40sp" />
+            android:textSize="33sp" />
 
     </FrameLayout>
 

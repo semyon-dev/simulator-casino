@@ -19,7 +19,7 @@
             android:gravity="center"
             android:text="@string/balance"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="24sp" />
+            android:textSize="35sp" />
 
         <TextView
             android:id="@+id/text_balans"
@@ -30,7 +30,7 @@
             android:gravity="center"
             android:text="0"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="25sp" />
+            android:textSize="35sp" />
 
     </LinearLayout>
 <LinearLayout

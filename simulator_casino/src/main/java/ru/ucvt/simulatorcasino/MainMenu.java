@@ -1,53 +1,35 @@
 package ru.ucvt.simulatorcasino;
 
-
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import java.util.Locale;
+
+import static ru.ucvt.simulatorcasino.Settings.APP_LANGUAGE;
 
 public class MainMenu extends Activity {
 
     ImageButton btn_play,btn_info,btn_settings;
-    public SharedPreferences preference;
+    SharedPreferences language_pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        language_pref = PreferenceManager.getDefaultSharedPreferences(this);
+        set_language(language_pref.getString(APP_LANGUAGE, "en"));
+
         setContentView(R.layout.activity_main_menu);
-
-        Locale locale;
-
-        try
-        {
-            locale = new Locale(preference.getString("language","English"));
-        }
-        catch (Exception ex)
-        {
-            locale = new Locale("ru");
-        }
-
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            config.setLocale(locale);
-            createConfigurationContext(config);
-        } else {
-            config.locale = locale;
-            getResources().updateConfiguration(config, null);
-        }
 
         btn_play = (ImageButton) findViewById(R.id.btn_play);
         btn_play.setOnClickListener(btn_play_click);
@@ -57,6 +39,14 @@ public class MainMenu extends Activity {
 
         btn_settings = (ImageButton) findViewById(R.id.btn_settings);
         btn_settings.setOnClickListener(btn_settings_click);
+    }
+
+    void set_language(String languageToLoad){
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
 
@@ -99,25 +89,4 @@ public class MainMenu extends Activity {
             startActivity(intent);
         }
     };
-
- /*   // функция изменения и сохранения настроек языка
-    private void set_language(String languageToLoad){
-        Configuration config = getBaseContext().getResources().getConfiguration();
-        Locale locale = new Locale(languageToLoad);
-        Locale.setDefault(locale);
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-       // recreate();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        super.onConfigurationChanged(newConfig);
-        locale = new Locale(language);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, null);
-    }  */
 }

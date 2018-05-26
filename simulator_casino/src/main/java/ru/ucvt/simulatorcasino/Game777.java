@@ -2,33 +2,39 @@ package ru.ucvt.simulatorcasino;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.media.Image;
-import android.media.ImageReader;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Random;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static ru.ucvt.simulatorcasino.Settings.APP_LANGUAGE;
+
 public class Game777 extends Activity {
 
+    Context context;
     int sum;
     ImageView pic1,pic2,pic3,pic4,pic5;
     Button btn_play;
     TextView txt_balans;
-    int balans, n = 0;           //n - счётчик для таймера
+    int balans, n = 0;         //n - счётчик для таймера
     String s1;
 
     private Timer mTimer;
     private Game777.MyTimerTask mMyTimerTask;
+
+    SharedPreferences language_pref;
+    String lang;
 
     ScaleAnimation animation;
     Game777_Logic MyGame777 = new Game777_Logic();
@@ -36,6 +42,10 @@ public class Game777 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        language_pref = PreferenceManager.getDefaultSharedPreferences(this);
+        set_language(language_pref.getString(APP_LANGUAGE, "en"));
+
         setContentView(R.layout.activity_game_777);
 
         txt_balans = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы
@@ -56,6 +66,28 @@ public class Game777 extends Activity {
         animation.setDuration(100);
        // animation.setRepeatMode(Animation.INFINITE); // бесконечная анимация
     }
+
+    public static SharedPreferences getDefaultSharedPreferences(Context context) {
+        return context.getSharedPreferences(getDefaultSharedPreferencesName(context),
+                getDefaultSharedPreferencesMode());
+    }
+
+    private static String getDefaultSharedPreferencesName(Context context) {
+        return context.getPackageName() + "_preferences";
+    }
+
+    private static int getDefaultSharedPreferencesMode() {
+        return Context.MODE_PRIVATE;
+    }
+
+    void set_language(String languageToLoad){
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
+
     // создаем обработчик нажатия
     View.OnClickListener btn_play_Click = new View.OnClickListener() {
         @Override
