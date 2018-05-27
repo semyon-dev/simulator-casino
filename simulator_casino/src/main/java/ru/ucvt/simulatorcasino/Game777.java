@@ -2,29 +2,26 @@ package ru.ucvt.simulatorcasino;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
+import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
-import android.view.animation.ScaleAnimation;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static ru.ucvt.simulatorcasino.Settings.APP_LANGUAGE;
+import es.dmoral.toasty.Toasty;
 
 public class Game777 extends Activity {
 
-    Context context;
     int sum;
-    ImageView pic1,pic2,pic3,pic4,pic5;
+    ImageView pic1, pic2, pic3, pic4, pic5;
     Button btn_play;
     TextView txt_balans;
     int balans, n = 0;         //n - счётчик для таймера
@@ -33,59 +30,34 @@ public class Game777 extends Activity {
     private Timer mTimer;
     private Game777.MyTimerTask mMyTimerTask;
 
-    SharedPreferences language_pref;
-    String lang;
+    RotateAnimation rotate;
 
-    ScaleAnimation animation;
     Game777_Logic MyGame777 = new Game777_Logic();
+    SetLanguage set_lang = new SetLanguage();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        language_pref = PreferenceManager.getDefaultSharedPreferences(this);
-        set_language(language_pref.getString(APP_LANGUAGE, "en"));
+        set_lang.set_language(getBaseContext());
 
         setContentView(R.layout.activity_game_777);
 
         txt_balans = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы
         txt_balans.setText("3000");                              // начальный баланс
 
-         pic1 = (ImageView) findViewById(R.id.pic1);
-         pic2 = (ImageView) findViewById(R.id.pic2);
-         pic3 = (ImageView) findViewById(R.id.pic3);
-         pic4 = (ImageView) findViewById(R.id.pic4);
-         pic5 = (ImageView) findViewById(R.id.pic5);
+        pic1 = (ImageView) findViewById(R.id.pic1);
+        pic2 = (ImageView) findViewById(R.id.pic2);
+        pic3 = (ImageView) findViewById(R.id.pic3);
+        pic4 = (ImageView) findViewById(R.id.pic4);
+        pic5 = (ImageView) findViewById(R.id.pic5);
 
         btn_play = (Button) findViewById(R.id.button_play);
         btn_play.setOnClickListener(btn_play_Click);
 
-        animation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 1.0f,
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(100);
-       // animation.setRepeatMode(Animation.INFINITE); // бесконечная анимация
-    }
-
-    public static SharedPreferences getDefaultSharedPreferences(Context context) {
-        return context.getSharedPreferences(getDefaultSharedPreferencesName(context),
-                getDefaultSharedPreferencesMode());
-    }
-
-    private static String getDefaultSharedPreferencesName(Context context) {
-        return context.getPackageName() + "_preferences";
-    }
-
-    private static int getDefaultSharedPreferencesMode() {
-        return Context.MODE_PRIVATE;
-    }
-
-    void set_language(String languageToLoad){
-        Configuration config = getBaseContext().getResources().getConfiguration();
-        Locale locale = new Locale(languageToLoad);
-        Locale.setDefault(locale);
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotate.setDuration(250);
+        rotate.setRepeatCount(50);
     }
 
     // создаем обработчик нажатия
@@ -94,6 +66,12 @@ public class Game777 extends Activity {
         public void onClick(View v) {
 
             btn_play.setEnabled(false);
+
+            pic1.startAnimation(rotate);
+            pic2.startAnimation(rotate);
+            pic3.startAnimation(rotate);
+            pic4.startAnimation(rotate);
+            pic5.startAnimation(rotate);
 
             if (mTimer != null) {
                 mTimer.cancel();
@@ -118,56 +96,52 @@ public class Game777 extends Activity {
                         mTimer.cancel();             // прерываем таймер
                         sum = MyGame777.Compare();   // метод сравнивания картинок
                         balans_edit(sum);
-                        if(sum>0){
+                        if (sum > 0) {
                             dialog(sum);
                         }
+                        mTimer = null;
                         btn_play.setEnabled(true);
                     } else {
-                        animation.setDuration(n*10);
+                        //animation.setDuration(n*10);
 
                         if (n < 10) {
                             s1 = MyGame777.AddElements(0);
                             int res1 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic1.setImageResource(res1);
-                            pic1.startAnimation(animation);
-                        }else if(n==10){
-                           // pic1.clearAnimation();
+                        } else if (n == 10) {
+                            pic1.clearAnimation();
                         }
 
                         if (n < 20) {
                             s1 = MyGame777.AddElements(1);
                             int res2 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic2.setImageResource(res2);
-                            pic2.startAnimation(animation);
-                        }else if(n==20){
-                          //  pic2.clearAnimation();
+                        } else if (n == 20) {
+                            pic2.clearAnimation();
                         }
 
                         if (n < 30) {
                             s1 = MyGame777.AddElements(2);
                             int res3 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic3.setImageResource(res3);
-                            pic3.startAnimation(animation);
-                        }else if(n==30){
-                         //   pic3.clearAnimation();
+                        } else if (n == 30) {
+                            pic3.clearAnimation();
                         }
 
                         if (n < 40) {
                             s1 = MyGame777.AddElements(3);
                             int res4 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic4.setImageResource(res4);
-                            pic4.startAnimation(animation);
-                        }else if(n==50){
-                           // pic4.clearAnimation();
+                        } else if (n == 40) {
+                            pic4.clearAnimation();
                         }
 
                         if (n < 50) {
                             s1 = MyGame777.AddElements(4);
                             int res5 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic5.setImageResource(res5);
-                            pic5.startAnimation(animation);
-                        }else if(n==50){
-                         //   pic5.clearAnimation();
+                        } else if (n == 50) {
+                            pic5.clearAnimation();
                         }
                     }
                 }
@@ -197,5 +171,15 @@ public class Game777 extends Activity {
         balans = Integer.parseInt(String.valueOf(txt_balans.getText()));
         balans += edit;
         txt_balans.setText(Integer.toString(balans));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mTimer != null) {
+            Toasty.warning(getBaseContext(), "Подождите пока закончится игра!", Toast.LENGTH_SHORT, true).show();
+        } else {
+            Intent intent = new Intent(this, GameMenu.class);
+            startActivity(intent);
+        }
     }
 }

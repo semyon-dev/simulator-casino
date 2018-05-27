@@ -1,33 +1,23 @@
 package ru.ucvt.simulatorcasino;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
-
-import java.util.Locale;
-
-import static ru.ucvt.simulatorcasino.Settings.APP_LANGUAGE;
 
 public class MainMenu extends Activity {
 
     ImageButton btn_play,btn_info,btn_settings;
-    SharedPreferences language_pref;
+    SetLanguage set_lang = new SetLanguage();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        language_pref = PreferenceManager.getDefaultSharedPreferences(this);
-        set_language(language_pref.getString(APP_LANGUAGE, "en"));
+        set_lang.set_language(getBaseContext());
 
         setContentView(R.layout.activity_main_menu);
 
@@ -40,15 +30,6 @@ public class MainMenu extends Activity {
         btn_settings = (ImageButton) findViewById(R.id.btn_settings);
         btn_settings.setOnClickListener(btn_settings_click);
     }
-
-    void set_language(String languageToLoad){
-        Configuration config = getBaseContext().getResources().getConfiguration();
-        Locale locale = new Locale(languageToLoad);
-        Locale.setDefault(locale);
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-    }
-
 
     // создаем обработчик нажатия для btn_play
     View.OnClickListener btn_play_click = new View.OnClickListener() {
@@ -84,9 +65,16 @@ public class MainMenu extends Activity {
     View.OnClickListener btn_settings_click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
             Intent intent = new Intent(MainMenu.this, Settings.class);
             startActivity(intent);
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainMenu.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 }

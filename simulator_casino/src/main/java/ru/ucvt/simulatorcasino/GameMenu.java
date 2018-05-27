@@ -8,9 +8,13 @@ import android.widget.ImageButton;
 
 public class GameMenu extends Activity {
 
+    SetLanguage set_lang = new SetLanguage();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        set_lang.set_language(getBaseContext());
+
         setContentView(R.layout.activity_game_menu);
 
         ImageButton btn_game_cards = (ImageButton) findViewById(R.id.btn_game_cards);
@@ -35,4 +39,10 @@ public class GameMenu extends Activity {
             startActivity(intent);
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainMenu.class);
+        startActivity(intent);
+    }
 }

@@ -3,16 +3,20 @@ package ru.ucvt.simulatorcasino;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import es.dmoral.toasty.Toasty;
 
 public class GameCards extends Activity {
 
@@ -28,9 +32,14 @@ public class GameCards extends Activity {
 
     ScaleAnimation animation;
 
+    SetLanguage set_lang = new SetLanguage();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        set_lang.set_language(getBaseContext());
+
         setContentView(R.layout.activity_game_cards);
 
         txt_balans = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы
@@ -56,9 +65,6 @@ public class GameCards extends Activity {
 
             btn_play.setEnabled(false);
 
-            if (mTimer != null) {
-                mTimer.cancel();
-            }
             mTimer = new Timer();
             mMyTimerTask = new MyTimerTask();
 
@@ -78,6 +84,7 @@ public class GameCards extends Activity {
                         n = 0;                      // сбрасываем счётчик
                         mTimer.cancel();            // прерываем таймер
                         compare();                  // метод сравнивания картинок
+                        mTimer = null;
                         btn_play.setEnabled(true);
                     } else {
 
@@ -86,7 +93,7 @@ public class GameCards extends Activity {
                             int res1 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic1.setImageResource(res1);
                             pic1.startAnimation(animation);
-                        }else if(n==15){
+                        } else if (n == 15) {
                             pic1.clearAnimation();
                         }
 
@@ -95,7 +102,7 @@ public class GameCards extends Activity {
                             int res2 = getResources().getIdentifier(s2, "drawable", getPackageName());
                             pic2.setImageResource(res2);
                             pic2.startAnimation(animation);
-                        }else if(n==25){
+                        } else if (n == 25) {
                             pic2.clearAnimation();
                         }
 
@@ -104,7 +111,7 @@ public class GameCards extends Activity {
                             int res3 = getResources().getIdentifier(s3, "drawable", getPackageName());
                             pic3.setImageResource(res3);
                             pic3.startAnimation(animation);
-                        }else if(n==35){
+                        } else if (n == 35) {
                             pic3.clearAnimation();
                         }
                     }
@@ -113,19 +120,19 @@ public class GameCards extends Activity {
         }
 
         void compare() {
-            if (s1.equals(s2) &  s2.equals(s3) ) {     //если все картинки одинаковые
+            if (s1.equals(s2) & s2.equals(s3)) {     //если все картинки одинаковые
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCards.this);  //выводим сообщение о выиграше
                 mBuilder.setTitle(getString(R.string.hurray))
-                            .setMessage(getString(R.string.win) + " 500")
-                            // .setIcon(R.drawable.green)       //ПОСТАВИТЬ ИКОНКУ!! --------------------------
-                            .setCancelable(false)
-                            .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();      //закрытие окна
-                                }
-                            });
+                        .setMessage(getString(R.string.win) + " 500")
+                        // .setIcon(R.drawable.green)       //ПОСТАВИТЬ ИКОНКУ!! --------------------------
+                        .setCancelable(false)
+                        .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();      //закрытие окна
+                            }
+                        });
 
                 AlertDialog malert = mBuilder.create();
                 malert.show();
@@ -141,6 +148,16 @@ public class GameCards extends Activity {
             balans = Integer.parseInt(String.valueOf(txt_balans.getText()));
             balans += edit;
             txt_balans.setText(Integer.toString(balans));
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mTimer != null) {
+            Toasty.warning(getBaseContext(), "Подождите пока закончится игра!", Toast.LENGTH_SHORT, true).show();
+        } else {
+            Intent intent = new Intent(this, GameMenu.class);
+            startActivity(intent);
         }
     }
 }

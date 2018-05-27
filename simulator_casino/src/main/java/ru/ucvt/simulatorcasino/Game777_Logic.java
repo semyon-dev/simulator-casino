@@ -3,7 +3,6 @@ package ru.ucvt.simulatorcasino;
 import java.util.Arrays;
 import java.util.Random;
 
-
 public class Game777_Logic {
 
     public int[] CardsArray = new int[5];
