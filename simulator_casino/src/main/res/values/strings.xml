@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Simulator Casino</string>
+    <string name="app_name">Casino</string>
     <string name="about_game">About the game</string>
     <string name="settings">Settings</string>
     <string name="play">Play</string>
@@ -13,4 +13,5 @@
     <string name="language">Language</string>
     <string name="change_language">Click to change the language</string>
     <string name="choose_language">Choose language</string>
+    <string name="app_full_name">Simulator Casino</string>
 </resources>

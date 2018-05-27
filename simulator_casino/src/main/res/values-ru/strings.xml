@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Симулятор Казино</string>
+    <string name="app_name">Казино</string>
     <string name="about_game">Об игре</string>
     <string name="settings">Настройки</string>
     <string name="play">Играть</string>
@@ -13,4 +13,5 @@
     <string name="language">Язык</string>
     <string name="change_language">Нажмите для изменения языка</string>
     <string name="choose_language">Выберите язык</string>
+    <string name="app_full_name">Симулятор Казино</string>
 </resources>
