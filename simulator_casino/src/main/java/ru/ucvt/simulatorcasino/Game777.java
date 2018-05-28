@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +21,9 @@ import es.dmoral.toasty.Toasty;
 
 public class Game777 extends Activity {
 
+    private EditText bet_edit;
     private ImageView pic1, pic2, pic3, pic4, pic5;
-    private Button btn_play;
+    private Button btn_play, btn_rules, max, min, x2, half;
     private TextView txt_balans;
     private int n = 0, sum;         //n - счётчик для таймера
     private String s1;
@@ -51,8 +53,22 @@ public class Game777 extends Activity {
         pic4 = (ImageView) findViewById(R.id.pic4);
         pic5 = (ImageView) findViewById(R.id.pic5);
 
-        btn_play = (Button) findViewById(R.id.button_play);
+        btn_play = (Button) findViewById(R.id.btn_play);
         btn_play.setOnClickListener(btn_play_Click);
+
+        btn_rules = (Button) findViewById(R.id.btn_rules);
+        bet_edit = (EditText) findViewById(R.id.bet_edit);
+
+        max = (Button) findViewById(R.id.max);
+        min = (Button) findViewById(R.id.min);
+        x2 = (Button) findViewById(R.id.x2);
+        half = (Button) findViewById(R.id.half);
+
+        max.setOnClickListener(bet_sum);
+        min.setOnClickListener(bet_sum);
+        x2.setOnClickListener(bet_sum);
+        half.setOnClickListener(bet_sum);
+        btn_rules.setOnClickListener(btn_rules_Click);
 
         rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotate.setDuration(250);
@@ -64,22 +80,28 @@ public class Game777 extends Activity {
         @Override
         public void onClick(View v) {
 
-            btn_play.setEnabled(false);
 
-            pic1.startAnimation(rotate);
-            pic2.startAnimation(rotate);
-            pic3.startAnimation(rotate);
-            pic4.startAnimation(rotate);
-            pic5.startAnimation(rotate);
+            if (Integer.valueOf(String.valueOf(bet_edit.getText())) > MyGame777.Get(getBaseContext())) {
+                Toasty.warning(getBaseContext(), getString(R.string.not_enough_money), Toast.LENGTH_SHORT, true).show();
+            } else {
 
-            if (mTimer != null) {
-                mTimer.cancel();
+                btn_play.setEnabled(false);
+
+                pic1.startAnimation(rotate);
+                pic2.startAnimation(rotate);
+                pic3.startAnimation(rotate);
+                pic4.startAnimation(rotate);
+                pic5.startAnimation(rotate);
+
+                if (mTimer != null) {
+                    mTimer.cancel();
+                }
+                mTimer = new Timer();
+                mMyTimerTask = new MyTimerTask();
+
+                // singleshot delay 1000 ms
+                mTimer.schedule(mMyTimerTask, 1000, 150);
             }
-            mTimer = new Timer();
-            mMyTimerTask = new MyTimerTask();
-
-            // singleshot delay 1000 ms
-            mTimer.schedule(mMyTimerTask, 1000, 150);
         }
     };
 
@@ -90,10 +112,15 @@ public class Game777 extends Activity {
                 @Override
                 public void run() {
                     n++;
-                    if (n == 52) {                   // таймер выполняется 90 раз
-                        n = 0;                       // сбрасываем счётчик
-                        mTimer.cancel();             // прерываем таймер
-                        sum = MyGame777.Compare(getBaseContext());   // метод сравнивания картинок
+                    if (n == 52) {   // таймер выполняется 52 раза
+
+                        n = 0;  // сбрасываем счётчик
+
+                        // прерываем таймер
+                        mTimer.cancel();
+
+                        // метод сравнивания картинок
+                        sum = MyGame777.Compare(Integer.valueOf(String.valueOf(bet_edit.getText())), getBaseContext());
                         txt_balans.setText(Integer.toString(MyGame777.Get(getBaseContext())));
                         if (sum > 0) {
                             dialog(sum);
@@ -172,4 +199,45 @@ public class Game777 extends Activity {
             startActivity(intent);
         }
     }
+
+    View.OnClickListener bet_sum = new View.OnClickListener() {
+        @Override
+        public void onClick(View btn) {
+            switch (btn.getId()) {
+                case R.id.x2:
+                    bet_edit.setText(Integer.toString(Integer.valueOf(String.valueOf(bet_edit.getText())) * 2));
+                    break;
+                case R.id.half:
+                    bet_edit.setText(Integer.toString(Integer.valueOf(String.valueOf(bet_edit.getText())) / 2));
+                    break;
+                case R.id.max:
+                    bet_edit.setText(Integer.toString(MyGame777.Get(getBaseContext())));
+                    break;
+                case R.id.min:
+                    bet_edit.setText("1");
+                    break;
+            }
+        }
+    };
+
+    // создаем обработчик нажатия
+    View.OnClickListener btn_rules_Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(Game777.this);  //выводим сообщение о выиграше
+            mBuilder.setTitle(R.string.rules)
+                    .setMessage(R.string.rules_game_777)
+                    .setCancelable(true)
+                    .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();      //закрытие окна
+                        }
+                    });
+
+            AlertDialog malert = mBuilder.create();
+            malert.show();
+        }
+    };
 }

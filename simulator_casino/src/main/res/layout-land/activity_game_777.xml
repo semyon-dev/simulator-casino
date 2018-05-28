@@ -31,6 +31,14 @@
             android:textColor="@android:color/holo_green_dark"
             android:textSize="33sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="$"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="35sp" />
+
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -76,40 +84,94 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bet"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="30sp" />
+
+        <EditText
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:id="@+id/bet_edit"
+            android:layout_width="170sp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="100" />
 
         <Button
-            android:id="@+id/button_play"
-            android:layout_width="match_parent"
-            android:layout_height="82dp"
-            android:textSize="33sp"
-            android:text="@string/play" />
 
-        <FrameLayout
+            android:id="@+id/btn_play"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:textSize="25sp"
+            android:text="@string/play" />
 
-            <ImageButton
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/x2"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:text="2x"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/half"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:text="/2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/min"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:text="MIN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/max"
+            android:layout_weight="1"
+            android:textSize="30sp"
+            android:text="MAX"
+                android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:orientation="horizontal">
+
+            <Button
                 android:id="@+id/btn_rules"
                 android:layout_width="match_parent"
-                android:layout_height="70sp"
-                android:paddingLeft="260dp"
-                android:layout_gravity="bottom"
-                android:src="@drawable/rules" />
-
-            <TextView
-                android:id="@+id/text_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="13sp"
-                android:layout_gravity="bottom"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/rules"
                 android:text="@string/rules"
-                android:textSize="33sp" />
+                android:textSize="20sp" />
 
-        </FrameLayout>
-    </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

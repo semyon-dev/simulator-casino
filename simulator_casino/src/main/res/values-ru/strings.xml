@@ -3,7 +3,7 @@
     <string name="about_game">Об игре</string>
     <string name="settings">Настройки</string>
     <string name="play">Играть</string>
-    <string name="version">Версия: 0.2.2 BETA</string>
+    <string name="version">Версия: 0.4.0 BETA</string>
     <string name="author">Автор : Семён Новиков</string>
     <string name="cards">Карты</string>
     <string name="choose_game">Выберите игру :</string>
@@ -15,9 +15,13 @@
     <string name="choose_language">Выберите язык</string>
     <string name="app_full_name">Симулятор Казино</string>
     <string name="rules">Правила</string>
-    <string name="bet">Ставка</string>
+    <string name="bet">Ставка :</string>
     <string name="set_bet">Введите ставку</string>
     <string name="rules_game_cards">При выпадении трёх одинаковых карт
         вы получаете x5\nИначе баланс уменьшается на сумму ставки.</string>
     <string name="wait_game">Подождите пока закончится игра!</string>
+    <string name="not_enough_money">Недостаточно денег!</string>
+    <string name="rules_game_777">При выпадении пяти одинаковых карт
+        вы получаете x15, при 4 карт x10, при 3 карт x5\nИначе баланс уменьшается на сумму ставки.
+    </string>
 </resources>

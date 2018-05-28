@@ -22,7 +22,7 @@ class Game777_Logic {
         return PicName;
     }
 
-    int Compare(Context context) {       // функция нахождения максимального кол-во повторяющихся картинок
+    int Compare(int bet, Context context) {       // функция нахождения максимального кол-во повторяющихся картинок
 
     Arrays.sort(CardsArray); // сортируем массив
     int m = 1;
@@ -41,15 +41,13 @@ class Game777_Logic {
     if (m>max) max = m;
 
         if (max == 5) {
-            sum = 1500;
+            sum = bet * 15;
         } else if (max == 4) {
-            sum = 1000;
+            sum = bet * 10;
         } else if (max == 3) {
-            sum = 300;
-        } else if (max == 2) {
-            sum = -100;
+            sum = bet * 5;
         } else {
-            sum = -100;
+            sum = bet - bet * 2;
         }
         balance.Update(sum, context);
         return sum; //возвращаем сумму выиграша

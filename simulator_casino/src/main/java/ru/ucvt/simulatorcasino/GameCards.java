@@ -98,13 +98,17 @@ public class GameCards extends Activity {
         @Override
         public void onClick(View v) {
 
-            btn_play.setEnabled(false);
+            if (Integer.valueOf(String.valueOf(bet_edit.getText())) > balance.Get(getBaseContext())) {
+                Toasty.warning(getBaseContext(), getString(R.string.not_enough_money), Toast.LENGTH_SHORT, true).show();
+            } else {
+                btn_play.setEnabled(false);
 
-            mTimer = new Timer();
-            mMyTimerTask = new MyTimerTask();
+                mTimer = new Timer();
+                mMyTimerTask = new MyTimerTask();
 
-            // singleshot delay 1000 ms
-            mTimer.schedule(mMyTimerTask, 1000, 150);
+                // singleshot delay 1000 ms
+                mTimer.schedule(mMyTimerTask, 1000, 150);
+            }
         }
     };
 
