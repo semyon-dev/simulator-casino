@@ -9,15 +9,15 @@ import java.util.Locale;
 
 import static ru.ucvt.simulatorcasino.Settings.APP_LANGUAGE;
 
-public class SetLanguage {
+class SetLanguage {
 
-    SharedPreferences language_pref;
+    private SharedPreferences language_pref;
     private String languageToLoad;
 
-    public void set_language(Context context) {
+    void set_language(Context context) {
 
         language_pref = PreferenceManager.getDefaultSharedPreferences(context);
-        languageToLoad = language_pref.getString(APP_LANGUAGE, "en");
+        languageToLoad = language_pref.getString(APP_LANGUAGE, "ru");
 
         Configuration config = context.getResources().getConfiguration();
         Locale locale = new Locale(languageToLoad);

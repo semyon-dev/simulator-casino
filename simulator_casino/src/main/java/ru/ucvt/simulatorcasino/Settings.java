@@ -10,11 +10,10 @@ import android.preference.PreferenceManager;
 public class Settings extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener  {
 
     Context context;
+    private SharedPreferences language_pref;
+    static final String APP_LANGUAGE = "language";
 
-    SharedPreferences language_pref;
-    public static final String APP_LANGUAGE = "language";
-
-    public SharedPreferences pref;
+    SharedPreferences pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

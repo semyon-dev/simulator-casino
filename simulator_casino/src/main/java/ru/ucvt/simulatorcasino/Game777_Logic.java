@@ -1,28 +1,30 @@
 package ru.ucvt.simulatorcasino;
 
+import android.content.Context;
+
 import java.util.Arrays;
 import java.util.Random;
 
-public class Game777_Logic {
+class Game777_Logic {
 
-    public int[] CardsArray = new int[5];
+    private int[] CardsArray = new int[5];
+    private Balance balance = new Balance();
 
-    int sum = 0;
+    private int sum = 0;
 
-    public String PicName;
-    Random random = new Random();
+    private String PicName;
+    private Random random = new Random();
 
-    public String AddElements(int index) {
+    String AddElements(int index) {
         int a = 1 + random.nextInt(5);
         PicName = "game2pic" + String.valueOf(a);
         CardsArray[index] = a;
         return PicName;
     }
 
-public int Compare() {       // функция нахождения максимального кол-во повторяющихся картинок
+    int Compare(Context context) {       // функция нахождения максимального кол-во повторяющихся картинок
 
     Arrays.sort(CardsArray); // сортируем массив
-
     int m = 1;
     int max = 0;
 
@@ -49,7 +51,12 @@ public int Compare() {       // функция нахождения максим
         } else {
             sum = -100;
         }
+        balance.Update(sum, context);
         return sum; //возвращаем сумму выиграша
+    }
+
+    int Get(Context context) {
+        return balance.Get(context);
     }
 
 }

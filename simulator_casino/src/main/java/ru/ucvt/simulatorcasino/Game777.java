@@ -20,20 +20,19 @@ import es.dmoral.toasty.Toasty;
 
 public class Game777 extends Activity {
 
-    int sum;
-    ImageView pic1, pic2, pic3, pic4, pic5;
-    Button btn_play;
-    TextView txt_balans;
-    int balans, n = 0;         //n - счётчик для таймера
-    String s1;
+    private ImageView pic1, pic2, pic3, pic4, pic5;
+    private Button btn_play;
+    private TextView txt_balans;
+    private int n = 0, sum;         //n - счётчик для таймера
+    private String s1;
 
     private Timer mTimer;
     private Game777.MyTimerTask mMyTimerTask;
 
-    RotateAnimation rotate;
+    private RotateAnimation rotate;
 
-    Game777_Logic MyGame777 = new Game777_Logic();
-    SetLanguage set_lang = new SetLanguage();
+    private Game777_Logic MyGame777 = new Game777_Logic();
+    private SetLanguage set_lang = new SetLanguage();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class Game777 extends Activity {
         setContentView(R.layout.activity_game_777);
 
         txt_balans = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы
-        txt_balans.setText("3000");                              // начальный баланс
+        txt_balans.setText(Integer.toString(MyGame777.Get(getBaseContext())));
 
         pic1 = (ImageView) findViewById(R.id.pic1);
         pic2 = (ImageView) findViewById(R.id.pic2);
@@ -94,16 +93,14 @@ public class Game777 extends Activity {
                     if (n == 52) {                   // таймер выполняется 90 раз
                         n = 0;                       // сбрасываем счётчик
                         mTimer.cancel();             // прерываем таймер
-                        sum = MyGame777.Compare();   // метод сравнивания картинок
-                        balans_edit(sum);
+                        sum = MyGame777.Compare(getBaseContext());   // метод сравнивания картинок
+                        txt_balans.setText(Integer.toString(MyGame777.Get(getBaseContext())));
                         if (sum > 0) {
                             dialog(sum);
                         }
                         mTimer = null;
                         btn_play.setEnabled(true);
                     } else {
-                        //animation.setDuration(n*10);
-
                         if (n < 10) {
                             s1 = MyGame777.AddElements(0);
                             int res1 = getResources().getIdentifier(s1, "drawable", getPackageName());
@@ -149,11 +146,10 @@ public class Game777 extends Activity {
         }
     }
 
-    void dialog(int sum) {
+    private void dialog(int sum) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Game777.this);  //выводим сообщение о выиграше
         mBuilder.setTitle(getString(R.string.hurray))
                 .setMessage(getString(R.string.win) + " " + sum)
-                // .setIcon(R.drawable.green)       //ПОСТАВИТЬ ИКОНКУ!! --------------------------
                 .setCancelable(false)
                 .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                     @Override
@@ -166,17 +162,11 @@ public class Game777 extends Activity {
         malert.show();
     }
 
-    // функция изменения баланса
-    void balans_edit(int edit) {
-        balans = Integer.parseInt(String.valueOf(txt_balans.getText()));
-        balans += edit;
-        txt_balans.setText(Integer.toString(balans));
-    }
-
+    // нажатие на кнопку назад
     @Override
     public void onBackPressed() {
         if (mTimer != null) {
-            Toasty.warning(getBaseContext(), "Подождите пока закончится игра!", Toast.LENGTH_SHORT, true).show();
+            Toasty.warning(getBaseContext(), getString(R.string.wait_game), Toast.LENGTH_SHORT, true).show();
         } else {
             Intent intent = new Intent(this, GameMenu.class);
             startActivity(intent);

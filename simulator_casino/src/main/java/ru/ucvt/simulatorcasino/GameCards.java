@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,19 +21,21 @@ import es.dmoral.toasty.Toasty;
 
 public class GameCards extends Activity {
 
-    TextView txt_balans;
-    ImageView pic1, pic2, pic3;
-    Button btn_play;
-    Random random = new Random();
-    int balans, n = 0;                  //n - счётчик для таймера
-    String s1, s2, s3;
+    private EditText bet_edit;
+    private TextView txt_balans;
+    private ImageView pic1, pic2, pic3;
+    private Button btn_play, btn_rules, max, min, x2, half;
+    private Random random = new Random();
+    private int n = 0;                  //n - счётчик для таймера
+    private String s1, s2, s3;
 
     private Timer mTimer;
     private MyTimerTask mMyTimerTask;
 
-    ScaleAnimation animation;
+    private ScaleAnimation animation;
 
-    SetLanguage set_lang = new SetLanguage();
+    private SetLanguage set_lang = new SetLanguage();
+    private Balance balance = new Balance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +45,53 @@ public class GameCards extends Activity {
 
         setContentView(R.layout.activity_game_cards);
 
-        txt_balans = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы
-        txt_balans.setText("3000");                              // начальный баланс
+        txt_balans = (TextView) findViewById(R.id.text_balans);
+        txt_balans.setText(Integer.toString(balance.Get(getBaseContext())));
 
         pic1 = (ImageView) findViewById(R.id.pic1);
         pic2 = (ImageView) findViewById(R.id.pic2);
         pic3 = (ImageView) findViewById(R.id.pic3);
 
-        btn_play = (Button) findViewById(R.id.button_play);
+        max = (Button) findViewById(R.id.max);
+        min = (Button) findViewById(R.id.min);
+        x2 = (Button) findViewById(R.id.x2);
+        half = (Button) findViewById(R.id.half);
+
+        btn_rules = (Button) findViewById(R.id.btn_rules);
+        btn_play = (Button) findViewById(R.id.btn_play);
+        bet_edit = (EditText) findViewById(R.id.bet_edit);
+
+        btn_rules.setOnClickListener(btn_rules_Click);
         btn_play.setOnClickListener(btn_play_Click);
 
-        animation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 1.0f,
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f,
-                ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
+        max.setOnClickListener(bet_sum);
+        min.setOnClickListener(bet_sum);
+        x2.setOnClickListener(bet_sum);
+        half.setOnClickListener(bet_sum);
+
+        animation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 1.0f, ScaleAnimation.RELATIVE_TO_SELF, 0.5f, ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(100);
     }
+
+    View.OnClickListener bet_sum = new View.OnClickListener() {
+        @Override
+        public void onClick(View btn) {
+            switch (btn.getId()) {
+                case R.id.x2:
+                    bet_edit.setText(Integer.toString(Integer.valueOf(String.valueOf(bet_edit.getText())) * 2));
+                    break;
+                case R.id.half:
+                    bet_edit.setText(Integer.toString(Integer.valueOf(String.valueOf(bet_edit.getText())) / 2));
+                    break;
+                case R.id.max:
+                    bet_edit.setText(Integer.toString(balance.Get(getBaseContext())));
+                    break;
+                case R.id.min:
+                    bet_edit.setText("1");
+                    break;
+            }
+        }
+    };
 
     // создаем обработчик нажатия
     View.OnClickListener btn_play_Click = new View.OnClickListener() {
@@ -70,6 +105,27 @@ public class GameCards extends Activity {
 
             // singleshot delay 1000 ms
             mTimer.schedule(mMyTimerTask, 1000, 150);
+        }
+    };
+
+    // создаем обработчик нажатия
+    View.OnClickListener btn_rules_Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCards.this);  //выводим сообщение о выиграше
+            mBuilder.setTitle(R.string.rules)
+                    .setMessage(R.string.rules_game_cards)
+                    .setCancelable(true)
+                    .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();      //закрытие окна
+                        }
+                    });
+
+            AlertDialog malert = mBuilder.create();
+            malert.show();
         }
     };
 
@@ -120,12 +176,14 @@ public class GameCards extends Activity {
         }
 
         void compare() {
+            int sum;
+            sum = Integer.valueOf(String.valueOf(bet_edit.getText()));
+
             if (s1.equals(s2) & s2.equals(s3)) {     //если все картинки одинаковые
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCards.this);  //выводим сообщение о выиграше
-                mBuilder.setTitle(getString(R.string.hurray))
-                        .setMessage(getString(R.string.win) + " 500")
-                        // .setIcon(R.drawable.green)       //ПОСТАВИТЬ ИКОНКУ!! --------------------------
+                mBuilder.setTitle(R.string.hurray)
+                        .setMessage((R.string.win) + " 500")
                         .setCancelable(false)
                         .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                             @Override
@@ -137,24 +195,23 @@ public class GameCards extends Activity {
                 AlertDialog malert = mBuilder.create();
                 malert.show();
 
-                balans_edit(500);    //в случае выиграша увеличиваем баланс на 500
+                set_balance(sum * 5);    //в случае выиграша увеличиваем баланс на 500
             } else {
-                balans_edit(-100);   //иначе уменьшаем на 100
+                set_balance(sum - sum * 2);
             }
         }
+    }
 
-        //метод изменения баланса
-        void balans_edit(int edit) {
-            balans = Integer.parseInt(String.valueOf(txt_balans.getText()));
-            balans += edit;
-            txt_balans.setText(Integer.toString(balans));
-        }
+    //метод изменения баланса
+    private void set_balance(int sum) {
+        balance.Update(sum, this);
+        txt_balans.setText(Integer.toString(balance.Get(this)));
     }
 
     @Override
     public void onBackPressed() {
         if (mTimer != null) {
-            Toasty.warning(getBaseContext(), "Подождите пока закончится игра!", Toast.LENGTH_SHORT, true).show();
+            Toasty.warning(getBaseContext(), getString(R.string.wait_game), Toast.LENGTH_SHORT, true).show();
         } else {
             Intent intent = new Intent(this, GameMenu.class);
             startActivity(intent);

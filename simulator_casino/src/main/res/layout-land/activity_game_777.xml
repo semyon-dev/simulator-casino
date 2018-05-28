@@ -87,5 +87,29 @@
             android:textSize="33sp"
             android:text="@string/play" />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/btn_rules"
+                android:layout_width="match_parent"
+                android:layout_height="70sp"
+                android:paddingLeft="260dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/rules" />
+
+            <TextView
+                android:id="@+id/text_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="13sp"
+                android:layout_gravity="bottom"
+                android:text="@string/rules"
+                android:textSize="33sp" />
+
+        </FrameLayout>
     </LinearLayout>
 </LinearLayout>
