@@ -4,8 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+
+import es.dmoral.toasty.Toasty;
 
 public class Settings extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener  {
 
@@ -13,12 +16,29 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
     private SharedPreferences language_pref;
     static final String APP_LANGUAGE = "language";
 
+    Preference btn_new_balance;
     SharedPreferences pref;
+    Balance balance = new Balance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.activity_settings);
+
+        btn_new_balance = findPreference("btn_new_balance");
+
+        btn_new_balance.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                if (balance.Get(Settings.this)==0){
+                    balance.Update(100,Settings.this);
+                    Toasty.success(Settings.this,getString(R.string.new_money)).show();
+                }else {
+                    Toasty.error(Settings.this,getString(R.string.balance_more_than_zero)).show();
+                }
+                return true;
+            }
+        });
 
         context = getApplicationContext();
         pref = PreferenceManager.getDefaultSharedPreferences(context);

@@ -10,8 +10,7 @@
     <string name="choose_game">Выберите игру :</string>
     <string name="balance">Баланс :</string>
     <string name="hurray">Ура!</string>
-    <string name="language">Язык</string>
-    <string name="change_language">Нажмите для изменения языка</string>
+    <string name="change_language">Изменить язык</string>
     <string name="choose_language">Выберите язык</string>
     <string name="app_full_name">Симулятор Казино</string>
     <string name="rules">Правила</string>
@@ -29,4 +28,8 @@
         \nТакже есть секретные комбинации, они суммируются.
     </string>
     <string name="bet_very_low">Минимальная ставка 1 $!</string>
+    <string name="github">Исходный код досутпен на GitHub : SemyonNovikov</string>
+    <string name="new_money">Ваш баланс теперь 100 $!</string>
+    <string name="new_money_get">Пополнить баланс до 100 $</string>
+    <string name="balance_more_than_zero">Ваш баланс больше чем 0 $ !</string>
 </resources>

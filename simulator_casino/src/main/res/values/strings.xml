@@ -10,8 +10,7 @@
     <string name="hurray">Hurray!</string>
     <string name="win">You win</string>
     <string name="balance">Balance :</string>
-    <string name="language">Language</string>
-    <string name="change_language">Click to change the language</string>
+    <string name="change_language">Сhange the language</string>
     <string name="choose_language">Choose language</string>
     <string name="app_full_name">Simulator Casino</string>
     <string name="rules">Rules</string>
@@ -29,4 +28,8 @@
         \nAlso there are some secrets combinations.
     </string>
     <string name="bet_very_low">Min bet is 1 $!</string>
+    <string name="github">You can find this project on GitHub : SemyonNovikov</string>
+    <string name="new_money">Your balance now is 100 $</string>
+    <string name="new_money_get">Update balance to 100 $</string>v
+    <string name="balance_more_than_zero">Your balance more than 0 $ !</string>
 </resources>

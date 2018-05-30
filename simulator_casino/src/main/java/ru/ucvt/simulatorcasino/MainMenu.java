@@ -47,7 +47,7 @@ public class MainMenu extends Activity {
 
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainMenu.this);
             mBuilder.setTitle(getString(R.string.about_game))
-                    .setMessage(getString(R.string.author)  + "\n" + getString(R.string.version))
+                    .setMessage(getString(R.string.author)  + "\n" + getString(R.string.version) + "\n" + getString(R.string.github))
                     // .setIcon(R.drawable.green)
                     .setCancelable(true)
                     .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
