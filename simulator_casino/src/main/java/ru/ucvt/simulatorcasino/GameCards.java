@@ -27,7 +27,7 @@ public class GameCards extends Activity {
     private Button btn_play, btn_rules, max, min, x2, half;
     private Random random = new Random();
     private int n = 0;                  //n - счётчик для таймера
-    private String s1, s2, s3;
+    private String s1, s2, s3, bet;
 
     private Timer mTimer;
     private MyTimerTask mMyTimerTask;
@@ -93,21 +93,27 @@ public class GameCards extends Activity {
         }
     };
 
-    // создаем обработчик нажатия
+    // создаем обработчик нажатия для кнопки играть
     View.OnClickListener btn_play_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
             if (Integer.valueOf(String.valueOf(bet_edit.getText())) > balance.Get(getBaseContext())) {
-                Toasty.warning(getBaseContext(), getString(R.string.not_enough_money), Toast.LENGTH_SHORT, true).show();
+                Toasty(getString(R.string.not_enough_money));
             } else {
-                btn_play.setEnabled(false);
+                if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {
+                    Toasty(getString(R.string.bet_very_low));
+                } else {
+                    btn_play.setEnabled(false);
 
-                mTimer = new Timer();
-                mMyTimerTask = new MyTimerTask();
+                    bet = String.valueOf(bet_edit.getText());
 
-                // singleshot delay 1000 ms
-                mTimer.schedule(mMyTimerTask, 1000, 150);
+                    mTimer = new Timer();
+                    mMyTimerTask = new MyTimerTask();
+
+                    // singleshot delay 1000 ms
+                    mTimer.schedule(mMyTimerTask, 1000, 150);
+                }
             }
         }
     };
@@ -181,13 +187,13 @@ public class GameCards extends Activity {
 
         void compare() {
             int sum;
-            sum = Integer.valueOf(String.valueOf(bet_edit.getText()));
+            sum = Integer.valueOf(bet);
 
             if (s1.equals(s2) & s2.equals(s3)) {     //если все картинки одинаковые
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCards.this);  //выводим сообщение о выиграше
                 mBuilder.setTitle(R.string.hurray)
-                        .setMessage((R.string.win) + " 500")
+                        .setMessage(getString(R.string.win) + sum + " $")
                         .setCancelable(false)
                         .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                             @Override
@@ -212,13 +218,17 @@ public class GameCards extends Activity {
         txt_balans.setText(Integer.toString(balance.Get(this)));
     }
 
+    // при нажатии копки назад не даём выйти если игра не закончилась
     @Override
     public void onBackPressed() {
         if (mTimer != null) {
-            Toasty.warning(getBaseContext(), getString(R.string.wait_game), Toast.LENGTH_SHORT, true).show();
+            Toasty(getString(R.string.wait_game));
         } else {
             Intent intent = new Intent(this, GameMenu.class);
             startActivity(intent);
         }
+    }
+    private void Toasty(String message){
+        Toasty.warning(getBaseContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 }

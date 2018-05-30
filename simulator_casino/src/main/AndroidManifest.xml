@@ -19,19 +19,17 @@
         <activity
             android:name=".MainMenu"
             android:configChanges="locale">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity
             android:name=".GameMenu"
-            android:screenOrientation="portrait"
-            android:configChanges="locale">
+            android:configChanges="locale"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity
@@ -52,5 +50,12 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".GameCrypto"
+            android:configChanges="locale"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
+
 </manifest>

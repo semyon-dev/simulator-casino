@@ -3,13 +3,13 @@
     <string name="about_game">Об игре</string>
     <string name="settings">Настройки</string>
     <string name="play">Играть</string>
-    <string name="version">Версия: 0.4.0 BETA</string>
+    <string name="version">Версия: 0.6.0 BETA</string>
+    <string name="win">Вы выиграли</string>
     <string name="author">Автор : Семён Новиков</string>
     <string name="cards">Карты</string>
     <string name="choose_game">Выберите игру :</string>
     <string name="balance">Баланс :</string>
     <string name="hurray">Ура!</string>
-    <string name="win">Вы выиграли</string>
     <string name="language">Язык</string>
     <string name="change_language">Нажмите для изменения языка</string>
     <string name="choose_language">Выберите язык</string>
@@ -24,4 +24,9 @@
     <string name="rules_game_777">При выпадении пяти одинаковых карт
         вы получаете x15, при 4 карт x10, при 3 карт x5\nИначе баланс уменьшается на сумму ставки.
     </string>
+    <string name="crypto">Крипта</string>
+    <string name="rules_game_crypto">При выпадении 6 одинаковых картинок вы получаете x20 \nПри 5 - x15, при 4 - x7, при 3 - x3.
+        \nТакже есть секретные комбинации, они суммируются.
+    </string>
+    <string name="bet_very_low">Минимальная ставка 1 $!</string>
 </resources>

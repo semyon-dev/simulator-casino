@@ -6,11 +6,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 public class MainMenu extends Activity {
 
-    ImageButton btn_play,btn_info,btn_settings;
+    Button btn_play,btn_info,btn_settings;
     SetLanguage set_lang = new SetLanguage();
 
     @Override
@@ -21,13 +21,13 @@ public class MainMenu extends Activity {
 
         setContentView(R.layout.activity_main_menu);
 
-        btn_play = (ImageButton) findViewById(R.id.btn_play);
+        btn_play = (Button) findViewById(R.id.btn_play);
         btn_play.setOnClickListener(btn_play_click);
 
-        btn_info = (ImageButton) findViewById(R.id.btn_info);
+        btn_info = (Button) findViewById(R.id.btn_info);
         btn_info.setOnClickListener(btn_info_click);
 
-        btn_settings = (ImageButton) findViewById(R.id.btn_settings);
+        btn_settings = (Button) findViewById(R.id.btn_settings);
         btn_settings.setOnClickListener(btn_settings_click);
     }
 
@@ -61,7 +61,7 @@ public class MainMenu extends Activity {
         }
     };
 
-    // создаем обработчик нажатия для btn_play
+    // создаем обработчик нажатия для btn_settings
     View.OnClickListener btn_settings_click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -70,6 +70,7 @@ public class MainMenu extends Activity {
         }
     };
 
+    // при нажатии кнопки назад перезагружаем активити
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainMenu.class);

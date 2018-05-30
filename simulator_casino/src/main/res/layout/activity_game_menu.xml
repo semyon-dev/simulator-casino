@@ -13,48 +13,27 @@
         android:textColor="@android:color/holo_green_dark"
         android:textSize="33sp"/>
 
-    <FrameLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <ImageButton
-            android:id="@+id/btn_game_cards"
-            android:paddingLeft="260dp"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:src="@drawable/karts" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="35dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cards"
-            android:textSize="33sp" />
-
-    </FrameLayout>
-
-    <FrameLayout
+    <Button
+        android:id="@+id/btn_game_cards"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="@string/cards"
+        android:textSize="35sp"
+        android:drawableStart="@drawable/cards" />
 
-        <ImageButton
-            android:id="@+id/btn_game_777"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:paddingLeft="260dp"
-            android:src="@drawable/machine" />
+    <Button
+        android:id="@+id/btn_game_777"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="777"
+        android:textSize="35sp"
+        android:drawableStart="@drawable/machine" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="35dp"
-            android:text="777"
-            android:textSize="33sp" />
-
-    </FrameLayout>
-
+    <Button
+        android:id="@+id/btn_game_crypto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/crypto"
+        android:textSize="35sp"
+        android:drawableStart="@drawable/game3pic1" />
 </LinearLayout>

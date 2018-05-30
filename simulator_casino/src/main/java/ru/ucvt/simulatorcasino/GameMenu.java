@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 public class GameMenu extends Activity {
 
@@ -17,25 +17,30 @@ public class GameMenu extends Activity {
 
         setContentView(R.layout.activity_game_menu);
 
-        ImageButton btn_game_cards = (ImageButton) findViewById(R.id.btn_game_cards);
-        ImageButton btn_game_777 = (ImageButton) findViewById(R.id.btn_game_777);
+        Button btn_game_cards = (Button) findViewById(R.id.btn_game_cards);
+        Button btn_game_777 = (Button) findViewById(R.id.btn_game_777);
+        Button btn_game_crypto = (Button) findViewById(R.id.btn_game_crypto);
 
-        btn_game_cards.setOnClickListener(btn_game_cards_Click);
-        btn_game_777.setOnClickListener(btn_game_777_Click);
+        btn_game_cards.setOnClickListener(btn_game_Click);
+        btn_game_777.setOnClickListener(btn_game_Click);
+        btn_game_crypto.setOnClickListener(btn_game_Click);
     }
 
-    View.OnClickListener btn_game_cards_Click = new View.OnClickListener() {
+    View.OnClickListener btn_game_Click = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(GameMenu.this, GameCards.class);
-            startActivity(intent);
-        }
-    };
-
-    View.OnClickListener btn_game_777_Click = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(GameMenu.this, Game777.class);
+        public void onClick(View btn) {
+            Intent intent = null;
+            switch (btn.getId()) {
+                case R.id.btn_game_cards:
+                    intent = new Intent(GameMenu.this, GameCards.class);
+                    break;
+                case R.id.btn_game_777:
+                    intent = new Intent(GameMenu.this, Game777.class);
+                    break;
+                case R.id.btn_game_crypto:
+                    intent = new Intent(GameMenu.this, GameCrypto.class);
+                    break;
+            }
             startActivity(intent);
         }
     };
