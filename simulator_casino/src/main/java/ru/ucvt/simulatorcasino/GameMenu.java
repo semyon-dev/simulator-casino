@@ -8,12 +8,12 @@ import android.widget.Button;
 
 public class GameMenu extends Activity {
 
-    SetLanguage set_lang = new SetLanguage();
+    Language language = new Language();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        set_lang.set_language(getBaseContext());
+        language.Set(getBaseContext());
 
         setContentView(R.layout.activity_game_menu);
 

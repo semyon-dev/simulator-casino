@@ -34,14 +34,14 @@ public class GameCards extends Activity {
 
     private ScaleAnimation animation;
 
-    private SetLanguage set_lang = new SetLanguage();
+    private Language language = new Language();
     private Balance balance = new Balance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        set_lang.set_language(getBaseContext());
+        language.Set(getBaseContext());
 
         setContentView(R.layout.activity_game_cards);
 

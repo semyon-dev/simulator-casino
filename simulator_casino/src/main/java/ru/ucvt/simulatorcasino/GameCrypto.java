@@ -22,7 +22,7 @@ import es.dmoral.toasty.Toasty;
 
 public class GameCrypto extends Activity {
 
-    private SetLanguage set_lang = new SetLanguage();
+    private Language language = new Language();
     private Button btn_play, btn_rules, max, min, x2, half;
     private ImageView pic1, pic2, pic3, pic4, pic5, pic6;
     private TextView txt_balance;
@@ -41,7 +41,7 @@ public class GameCrypto extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        set_lang.set_language(this);
+        language.Set(this);
         setContentView(R.layout.activity_game_crypto);
 
         txt_balance = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы

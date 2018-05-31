@@ -34,13 +34,13 @@ public class Game777 extends Activity {
     private RotateAnimation rotate;
 
     private Game777_Logic MyGame777 = new Game777_Logic();
-    private SetLanguage set_lang = new SetLanguage();
+    private Language language = new Language();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        set_lang.set_language(getBaseContext());
+        language.Set(getBaseContext());
 
         setContentView(R.layout.activity_game_777);
 

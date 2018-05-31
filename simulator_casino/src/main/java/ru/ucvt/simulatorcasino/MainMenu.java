@@ -11,13 +11,13 @@ import android.widget.Button;
 public class MainMenu extends Activity {
 
     Button btn_play,btn_info,btn_settings;
-    SetLanguage set_lang = new SetLanguage();
+    Language language = new Language();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        set_lang.set_language(getBaseContext());
+        language.Set(getBaseContext());
 
         setContentView(R.layout.activity_main_menu);
 
