@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "ru.ucvt.simulatorcasino"
         minSdkVersion 21
         targetSdkVersion 21
         versionCode 1
-        versionName "0.6.0 BETA"
+        versionName "0.6.1 BETA"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
