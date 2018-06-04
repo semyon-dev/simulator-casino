@@ -46,9 +46,9 @@ class Language {
     String GetFull(Context context){
         String language = Get(context);
 
-        if(language.equals("ru")){
+        if (language.equalsIgnoreCase("ru") || language.equalsIgnoreCase("русский")){
             language = "Русский";
-        }else if(language.equals("en")){
+        }else {
             language = "English";
         }
         return language;

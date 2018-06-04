@@ -7,6 +7,8 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 
+import java.util.Locale;
+
 import es.dmoral.toasty.Toasty;
 
 public class Settings extends PreferenceActivity {

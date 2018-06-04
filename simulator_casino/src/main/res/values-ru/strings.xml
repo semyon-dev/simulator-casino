@@ -31,5 +31,5 @@
     <string name="github">Исходный код досутпен на GitHub : SemyonNovikov</string>
     <string name="new_money">Ваш баланс теперь 100 $!</string>
     <string name="new_money_get">Пополнить баланс до 100 $</string>
-    <string name="balance_more_than_zero">Ваш баланс больше чем 0 $ !</string>
+    <string name="balance_more_than_zero">Ваш баланс больше чем 0 $!</string>
 </resources>

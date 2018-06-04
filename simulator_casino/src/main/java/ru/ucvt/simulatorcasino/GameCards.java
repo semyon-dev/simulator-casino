@@ -76,15 +76,31 @@ public class GameCards extends Activity {
     View.OnClickListener bet_sum = new View.OnClickListener() {
         @Override
         public void onClick(View btn) {
+
+            int bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
+            int max = balance.Get(getBaseContext());
+
             switch (btn.getId()) {
                 case R.id.x2:
-                    bet_edit.setText(Integer.toString(Integer.valueOf(String.valueOf(bet_edit.getText())) * 2));
+                    if (bet == 0) {
+                        bet_edit.setText("1");
+                    } else {
+                        if (bet * 2 > max) {
+                            bet_edit.setText(Integer.toString(max));
+                        } else {
+                            bet_edit.setText(Integer.toString(bet * 2));
+                        }
+                    }
                     break;
                 case R.id.half:
-                    bet_edit.setText(Integer.toString(Integer.valueOf(String.valueOf(bet_edit.getText())) / 2));
+                    if (bet < 2) {
+                        bet_edit.setText("1");
+                    } else {
+                        bet_edit.setText(Integer.toString(bet / 2));
+                    }
                     break;
                 case R.id.max:
-                    bet_edit.setText(Integer.toString(balance.Get(getBaseContext())));
+                    bet_edit.setText(Integer.toString(max));
                     break;
                 case R.id.min:
                     bet_edit.setText("1");

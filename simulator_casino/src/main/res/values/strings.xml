@@ -31,5 +31,5 @@
     <string name="github">You can find this project on GitHub : SemyonNovikov</string>
     <string name="new_money">Your balance now is 100 $</string>
     <string name="new_money_get">Update balance to 100 $</string>v
-    <string name="balance_more_than_zero">Your balance more than 0 $ !</string>
+    <string name="balance_more_than_zero">Your balance more than 0 $!</string>
 </resources>

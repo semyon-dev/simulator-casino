@@ -1,9 +1,12 @@
 package ru.ucvt.simulatorcasino;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.Random;
+
+import es.dmoral.toasty.Toasty;
 
 class GameCrypto_Logic {
 
@@ -25,7 +28,7 @@ class GameCrypto_Logic {
 
         Arrays.sort(array); // сортируем массив
 
-        int m = 1, sum = 0, max=0;
+        int m = 1, sum = 0, max = 0;
 
         for (int i = 1; i < 6; i++) {
             if (array[i] == array[i - 1]) {
@@ -36,7 +39,7 @@ class GameCrypto_Logic {
                     m = 1;
                 }
             }
-        }if (m>max) max = m;
+        } if (m > max) max = m;
 
         if (max == 6) {
             sum += bet * 20;
@@ -47,18 +50,19 @@ class GameCrypto_Logic {
         } else if (max == 3) {
             sum += bet * 3;
 
-            if(array[1] == array[3] && array[3] == array[5]){
-                sum += bet*2;
+            if (array[1] == array[3] && array[3] == array[5]) {
+                sum += bet * 2;
             }
-            if(array[0]==array[1] && array[1]==array[2] && array[3]==array[4] && array[4]==array[5])
-            {
-                sum += bet*7;
+            if (array[0] == array[2] && array[2] == array[5]) {
+                sum += bet * 2;
+            }
+            if (array[0] == array[1] && array[1] == array[2] && array[3] == array[4] && array[4] == array[5]) {
+                sum += bet * 7;
             }
 
         } else {
             sum = bet - (bet * 2);
         }
-
         balance.Update(sum, context); // обновляем баланс
         return sum; //возвращаем сумму выиграша
     }

@@ -34,9 +34,9 @@ public class GameCrypto extends Activity {
     private String s1, bet;
     private GameCrypto_Logic gameCrypto = new GameCrypto_Logic();
 
-    AnimationSet set;
-    Animation animation;
-    Animation animOut;
+    private AnimationSet set;
+    private Animation animation;
+    private Animation animOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,43 +71,53 @@ public class GameCrypto extends Activity {
         half.setOnClickListener(bet_sum);
         btn_rules.setOnClickListener(btn_rules_Click);
 
-        //rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        //  rotate.setDuration(250);
+        // rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        // rotate.setDuration(250);
         // rotate.setRepeatCount(50);
 
         // animation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 1.0f,
         // ScaleAnimation.RELATIVE_TO_SELF, 0.5f, ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
-        //   animation.setDuration(100);
-        //   animation.setRepeatCount(50);
+        // animation.setDuration(100);
+        // animation.setRepeatCount(50);
 
         animation = AnimationUtils.makeInAnimation(this, true);
         animation.setStartOffset(1000);
-        animation.setRepeatCount(100);
-        animation.setRepeatMode(Animation.INFINITE);
-        animation.setDuration(500);
         animOut = AnimationUtils.makeOutAnimation(this, true);
-        animOut.setRepeatMode(Animation.INFINITE);
         animOut.setStartOffset(1000);
-        animOut.setRepeatCount(100);
         animOut.setDuration(500); // спустя 3 секунды TextView покинет экран
         set = new AnimationSet(true);
         set.addAnimation(animation);
         set.addAnimation(animOut);
-        set.setRepeatCount(100);
     }
 
     View.OnClickListener bet_sum = new View.OnClickListener() {
         @Override
         public void onClick(View btn) {
+
+            int bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
+            int max = gameCrypto.Get(getBaseContext());
+
             switch (btn.getId()) {
                 case R.id.x2:
-                    bet_edit.setText(Integer.toString(Integer.valueOf(String.valueOf(bet_edit.getText())) * 2));
+                    if (bet == 0) {
+                        bet_edit.setText("1");
+                    } else {
+                        if (bet * 2 > max) {
+                            bet_edit.setText(Integer.toString(max));
+                        } else {
+                            bet_edit.setText(Integer.toString(bet * 2));
+                        }
+                    }
                     break;
                 case R.id.half:
-                    bet_edit.setText(Integer.toString(Integer.valueOf(String.valueOf(bet_edit.getText())) / 2));
+                    if (bet < 2) {
+                        bet_edit.setText("1");
+                    } else {
+                        bet_edit.setText(Integer.toString(bet / 2));
+                    }
                     break;
                 case R.id.max:
-                    bet_edit.setText(Integer.toString(gameCrypto.Get(getBaseContext())));
+                    bet_edit.setText(Integer.toString(max));
                     break;
                 case R.id.min:
                     bet_edit.setText("1");
@@ -203,10 +213,10 @@ public class GameCrypto extends Activity {
         public void onClick(View v) {
 
             if (Integer.valueOf(String.valueOf(bet_edit.getText())) > gameCrypto.Get(getBaseContext())) {
-               Toasty(getString(R.string.not_enough_money));
+                Toasty(getString(R.string.not_enough_money));
             } else {
                 if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {
-                   Toasty(getString(R.string.bet_very_low));
+                    Toasty(getString(R.string.bet_very_low));
                 } else {
 
                     btn_play.setEnabled(false);
@@ -281,7 +291,7 @@ public class GameCrypto extends Activity {
         }
     };
 
-    private void Toasty(String message){
+    private void Toasty(String message) {
         Toasty.warning(getBaseContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 }
