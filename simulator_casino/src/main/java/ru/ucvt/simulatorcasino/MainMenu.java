@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,7 +51,14 @@ public class MainMenu extends Activity {
                     .setMessage(getString(R.string.author)  + "\n" + getString(R.string.version) + "\n" + getString(R.string.github))
                     // .setIcon(R.drawable.green)
                     .setCancelable(true)
-                    .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("GitHub", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/SemyonNovikov/SimulatorCasino"));
+                            startActivity(browserIntent);
+                        }
+                    })
+                    .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel(); //закрытие окна

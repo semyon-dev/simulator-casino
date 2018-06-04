@@ -21,14 +21,14 @@
     </string>
     <string name="wait_game">Wait until the game is over!</string>
     <string name="not_enough_money">Not enough money!</string>
-    <string name="rules_game_777">If 5 cards are the same you will get x15,\n4 cards - x10, 3 cards - x5\notherwise, the balance will decrease by the amount of your bet.
+    <string name="rules_game_777">If 5 cards are the same you will get x15,\n4 cards - x10, 3 cards - x5 , otherwise, the balance will decrease by the amount of your bet.
     </string>
     <string name="crypto">Crypto</string>
-    <string name="rules_game_crypto">If 6 images are the same you will get x20 \n 5 - x15, 4 - x7, 3 - x3.
+    <string name="rules_game_crypto">If 6 images are the same \nyou will get x20 \n5 - x15, 4 - x7, 3 - x3.
         \nAlso there are some secrets combinations.
     </string>
     <string name="bet_very_low">Min bet is 1 $!</string>
-    <string name="github">You can find this project on GitHub : SemyonNovikov</string>
+    <string name="github">You can find this project on GitHub :\nSemyonNovikov/SimulatorCasino</string>
     <string name="new_money">Your balance now is 100 $</string>
     <string name="new_money_get">Update balance to 100 $</string>v
     <string name="balance_more_than_zero">Your balance more than 0 $!</string>
