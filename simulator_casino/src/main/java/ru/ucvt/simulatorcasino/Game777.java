@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -107,6 +109,49 @@ public class Game777 extends Activity {
                     // singleshot delay 1000 ms
                     mTimer.schedule(mMyTimerTask, 1000, 150);
                 }
+            }
+        }
+    };
+
+    View.OnClickListener bet_sum = new View.OnClickListener() {
+        @Override
+        public void onClick(View btn) {
+            int bet, max;
+
+            try {
+                bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
+                max = MyGame777.Get(getBaseContext());
+
+                switch (btn.getId()) {
+                    case R.id.x2:
+                        if (bet == 0) {
+                            bet_edit.setText("1");
+                        } else {
+                            if (bet * 2 > max) {
+                                bet_edit.setText(Integer.toString(max));
+                            } else {
+                                bet_edit.setText(Integer.toString(bet * 2));
+                            }
+                        }
+                        break;
+                    case R.id.half:
+                        if (bet < 2) {
+                            bet_edit.setText("1");
+                        } else {
+                            bet_edit.setText(Integer.toString(bet / 2));
+                        }
+                        break;
+                    case R.id.max:
+                        bet_edit.setText(Integer.toString(max));
+                        break;
+                    case R.id.min:
+                        bet_edit.setText("1");
+                        break;
+                }
+
+            } catch (Exception error) {
+                Crashlytics.log("Error in max/min/x2/half2");
+                Crashlytics.logException(error);
             }
         }
     };
@@ -205,42 +250,6 @@ public class Game777 extends Activity {
             startActivity(intent);
         }
     }
-
-    View.OnClickListener bet_sum = new View.OnClickListener() {
-        @Override
-        public void onClick(View btn) {
-
-            int bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
-            int max = MyGame777.Get(getBaseContext());
-
-            switch (btn.getId()) {
-                case R.id.x2:
-                    if (bet == 0) {
-                        bet_edit.setText("1");
-                    } else {
-                        if (bet * 2 > max) {
-                            bet_edit.setText(Integer.toString(max));
-                        } else {
-                            bet_edit.setText(Integer.toString(bet * 2));
-                        }
-                    }
-                    break;
-                case R.id.half:
-                    if (bet < 2) {
-                        bet_edit.setText("1");
-                    } else {
-                        bet_edit.setText(Integer.toString(bet / 2));
-                    }
-                    break;
-                case R.id.max:
-                    bet_edit.setText(Integer.toString(max));
-                    break;
-                case R.id.min:
-                    bet_edit.setText("1");
-                    break;
-            }
-        }
-    };
 
     // создаем обработчик нажатия
     View.OnClickListener btn_rules_Click = new View.OnClickListener() {

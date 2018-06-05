@@ -3,16 +3,13 @@
 buildscript {
     repositories {
         jcenter()
-
-        // maven { url 'https://maven.google.com' }  // для Android Studio 2.3.3
-
         google()
+        maven { url 'https://maven.fabric.io/public' }
     }
     dependencies {
-
-       // classpath 'com.android.tools.build:gradle:2.3.3' //для Android Studio 2.3.3
-
-         classpath 'com.android.tools.build:gradle:3.1.2' // для Android Studio 3.x.x
+         classpath 'com.android.tools.build:gradle:3.1.2'
+         classpath 'com.google.gms:google-services:4.0.1' // google-services plugin
+         classpath 'io.fabric.tools:gradle:1.25.4'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -24,6 +21,7 @@ allprojects {
         jcenter()
         google()
         maven { url "https://jitpack.io" }
+        maven { url 'https://maven.google.com/' }
     }
 }
 

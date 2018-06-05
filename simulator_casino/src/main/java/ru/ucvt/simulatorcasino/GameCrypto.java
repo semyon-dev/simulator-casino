@@ -15,10 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import es.dmoral.toasty.Toasty;
+
 
 public class GameCrypto extends Activity {
 
@@ -94,34 +97,42 @@ public class GameCrypto extends Activity {
         @Override
         public void onClick(View btn) {
 
-            int bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
-            int max = gameCrypto.Get(getBaseContext());
+            int bet, max;
 
-            switch (btn.getId()) {
-                case R.id.x2:
-                    if (bet == 0) {
-                        bet_edit.setText("1");
-                    } else {
-                        if (bet * 2 > max) {
-                            bet_edit.setText(Integer.toString(max));
+            try {
+                bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
+                max = gameCrypto.Get(getBaseContext());
+
+                switch (btn.getId()) {
+                    case R.id.x2:
+                        if (bet == 0) {
+                            bet_edit.setText("1");
                         } else {
-                            bet_edit.setText(Integer.toString(bet * 2));
+                            if (bet * 2 > max) {
+                                bet_edit.setText(Integer.toString(max));
+                            } else {
+                                bet_edit.setText(Integer.toString(bet * 2));
+                            }
                         }
-                    }
-                    break;
-                case R.id.half:
-                    if (bet < 2) {
+                        break;
+                    case R.id.half:
+                        if (bet < 2) {
+                            bet_edit.setText("1");
+                        } else {
+                            bet_edit.setText(Integer.toString(bet / 2));
+                        }
+                        break;
+                    case R.id.max:
+                        bet_edit.setText(Integer.toString(max));
+                        break;
+                    case R.id.min:
                         bet_edit.setText("1");
-                    } else {
-                        bet_edit.setText(Integer.toString(bet / 2));
-                    }
-                    break;
-                case R.id.max:
-                    bet_edit.setText(Integer.toString(max));
-                    break;
-                case R.id.min:
-                    bet_edit.setText("1");
-                    break;
+                        break;
+                }
+
+            } catch (Exception error) {
+                Crashlytics.log("Error in max/min/x2/half2");
+                Crashlytics.logException(error);
             }
         }
     };
