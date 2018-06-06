@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -72,6 +73,8 @@ public class Game777 extends Activity {
         half.setOnClickListener(bet_sum);
         btn_rules.setOnClickListener(btn_rules_Click);
 
+        bet_edit.setText(Integer.toString(MyGame777.Get(this) / 10));
+
         rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotate.setDuration(250);
         rotate.setRepeatCount(50);
@@ -89,6 +92,8 @@ public class Game777 extends Activity {
                 if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {
                     Toasty(getString(R.string.bet_very_low));
                 } else {
+
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
                     btn_play.setEnabled(false);
 
@@ -178,6 +183,8 @@ public class Game777 extends Activity {
                         }
                         mTimer = null;
                         btn_play.setEnabled(true);
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
+
                     } else {
                         if (n < 10) {
                             s1 = MyGame777.AddElements(0);
@@ -272,7 +279,7 @@ public class Game777 extends Activity {
         }
     };
 
-    private void Toasty(String message){
+    private void Toasty(String message) {
         Toasty.warning(getBaseContext(), message, Toast.LENGTH_SHORT, true).show();
     }
 }

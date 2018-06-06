@@ -35,7 +35,7 @@ public class GameCrypto extends Activity {
 
     private int n = 0, sum;
     private String s1, bet;
-    private GameCrypto_Logic gameCrypto = new GameCrypto_Logic();
+    private GameCrypto_Logic GameCrypto_Logic = new GameCrypto_Logic();
 
     private AnimationSet set;
     private Animation animation;
@@ -48,7 +48,7 @@ public class GameCrypto extends Activity {
         setContentView(R.layout.activity_game_crypto);
 
         txt_balance = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы
-        txt_balance.setText(Integer.toString(gameCrypto.Get(getBaseContext())));
+        txt_balance.setText(Integer.toString(GameCrypto_Logic.Get(getBaseContext())));
 
         pic1 = (ImageView) findViewById(R.id.pic1);
         pic2 = (ImageView) findViewById(R.id.pic2);
@@ -73,6 +73,8 @@ public class GameCrypto extends Activity {
         x2.setOnClickListener(bet_sum);
         half.setOnClickListener(bet_sum);
         btn_rules.setOnClickListener(btn_rules_Click);
+
+        bet_edit.setText(Integer.toString(GameCrypto_Logic.Get(this) / 10));
 
         // rotate = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         // rotate.setDuration(250);
@@ -101,7 +103,7 @@ public class GameCrypto extends Activity {
 
             try {
                 bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
-                max = gameCrypto.Get(getBaseContext());
+                max = GameCrypto_Logic.Get(getBaseContext());
 
                 switch (btn.getId()) {
                     case R.id.x2:
@@ -152,8 +154,8 @@ public class GameCrypto extends Activity {
                         mTimer.cancel();
 
                         // метод сравнивания картинок
-                        sum = gameCrypto.Compare(Integer.valueOf(bet), getBaseContext());
-                        txt_balance.setText(Integer.toString(gameCrypto.Get(getBaseContext())));
+                        sum = GameCrypto_Logic.Compare(Integer.valueOf(bet), getBaseContext());
+                        txt_balance.setText(Integer.toString(GameCrypto_Logic.Get(getBaseContext())));
                         if (sum > 0) {
                             dialog(sum);
                         }
@@ -161,7 +163,7 @@ public class GameCrypto extends Activity {
                         btn_play.setEnabled(true);
                     } else {
                         if (n < 10) {
-                            s1 = gameCrypto.AddElements(0);
+                            s1 = GameCrypto_Logic.AddElements(0);
                             int res1 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic1.setImageResource(res1);
                             pic1.startAnimation(set);
@@ -170,7 +172,7 @@ public class GameCrypto extends Activity {
                         }
 
                         if (n < 20) {
-                            s1 = gameCrypto.AddElements(1);
+                            s1 = GameCrypto_Logic.AddElements(1);
                             int res2 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic2.setImageResource(res2);
                             pic2.startAnimation(set);
@@ -179,7 +181,7 @@ public class GameCrypto extends Activity {
                         }
 
                         if (n < 30) {
-                            s1 = gameCrypto.AddElements(2);
+                            s1 = GameCrypto_Logic.AddElements(2);
                             int res3 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic3.setImageResource(res3);
                             pic3.startAnimation(set);
@@ -188,7 +190,7 @@ public class GameCrypto extends Activity {
                         }
 
                         if (n < 40) {
-                            s1 = gameCrypto.AddElements(3);
+                            s1 = GameCrypto_Logic.AddElements(3);
                             int res4 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic4.setImageResource(res4);
                             pic4.startAnimation(set);
@@ -197,7 +199,7 @@ public class GameCrypto extends Activity {
                         }
 
                         if (n < 50) {
-                            s1 = gameCrypto.AddElements(4);
+                            s1 = GameCrypto_Logic.AddElements(4);
                             int res5 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic5.setImageResource(res5);
                             pic5.startAnimation(set);
@@ -205,7 +207,7 @@ public class GameCrypto extends Activity {
                             pic5.clearAnimation();
                         }
                         if (n < 60) {
-                            s1 = gameCrypto.AddElements(5);
+                            s1 = GameCrypto_Logic.AddElements(5);
                             int res6 = getResources().getIdentifier(s1, "drawable", getPackageName());
                             pic6.setImageResource(res6);
                             pic6.startAnimation(set);
@@ -223,7 +225,7 @@ public class GameCrypto extends Activity {
         @Override
         public void onClick(View v) {
 
-            if (Integer.valueOf(String.valueOf(bet_edit.getText())) > gameCrypto.Get(getBaseContext())) {
+            if (Integer.valueOf(String.valueOf(bet_edit.getText())) > GameCrypto_Logic.Get(getBaseContext())) {
                 Toasty(getString(R.string.not_enough_money));
             } else {
                 if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {

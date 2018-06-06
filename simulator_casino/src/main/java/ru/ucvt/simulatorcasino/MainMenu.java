@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import es.dmoral.toasty.Toasty;
+
 public class MainMenu extends Activity {
 
-    Button btn_play,btn_info,btn_settings;
+    Button btn_play, btn_info, btn_settings;
     Language language = new Language();
+    private static long back_pressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class MainMenu extends Activity {
 
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainMenu.this);
             mBuilder.setTitle(getString(R.string.about_game))
-                    .setMessage(getString(R.string.author)  + "\n" + getString(R.string.version) + "\n" + getString(R.string.github))
+                    .setMessage(getString(R.string.author) + "\n" + getString(R.string.version) + "\n" + getString(R.string.github))
                     // .setIcon(R.drawable.green)
                     .setCancelable(true)
                     .setNegativeButton("GitHub", new DialogInterface.OnClickListener() {
@@ -78,12 +81,13 @@ public class MainMenu extends Activity {
         }
     };
 
-    // при нажатии кнопки назад перезагружаем активити
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MainMenu.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+        } else {
+            Toasty.info(this, "Нажмите еще раз для выхода").show();
+        }
+        back_pressed = System.currentTimeMillis();
     }
 }

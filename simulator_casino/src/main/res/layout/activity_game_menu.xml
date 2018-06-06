@@ -1,39 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/choose_game"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="33sp"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_game_cards"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cards"
-        android:textSize="35sp"
-        android:drawableStart="@drawable/cards" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/choose_game"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="33sp"/>
 
-    <Button
-        android:id="@+id/btn_game_777"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="777"
-        android:textSize="35sp"
-        android:drawableStart="@drawable/machine" />
+        <Button
+            android:id="@+id/btn_game_cards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cards"
+            android:textSize="35sp"
+            android:drawableStart="@drawable/cards" />
 
-    <Button
-        android:id="@+id/btn_game_crypto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/crypto"
-        android:textSize="35sp"
-        android:drawableStart="@drawable/game3pic1" />
+        <Button
+            android:id="@+id/btn_game_777"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="777"
+            android:textSize="35sp"
+            android:drawableStart="@drawable/machine" />
+
+        <Button
+            android:id="@+id/btn_game_crypto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/crypto"
+            android:textSize="35sp"
+            android:drawableStart="@drawable/game3pic1" />
 </LinearLayout>
+</ScrollView>

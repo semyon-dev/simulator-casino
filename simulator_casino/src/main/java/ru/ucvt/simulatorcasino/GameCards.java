@@ -71,6 +71,8 @@ public class GameCards extends Activity {
         x2.setOnClickListener(bet_sum);
         half.setOnClickListener(bet_sum);
 
+        bet_edit.setText(Integer.toString(balance.Get(this) / 10));
+
         animation = new ScaleAnimation(1.0f, 0.0f, 1.0f, 1.0f, ScaleAnimation.RELATIVE_TO_SELF, 0.5f, ScaleAnimation.RELATIVE_TO_SELF, 0.5f);
         animation.setDuration(100);
     }

@@ -18,6 +18,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainMenu"
+            android:screenOrientation="fullUser"
             android:configChanges="locale">
 
             <intent-filter>
@@ -30,7 +31,7 @@
         <activity
             android:name=".GameMenu"
             android:configChanges="locale"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullUser">
         </activity>
 
         <activity
@@ -41,8 +42,7 @@
 
         <activity
             android:name=".Game777"
-            android:configChanges="locale"
-            android:screenOrientation="landscape">
+            android:configChanges="locale">
         </activity>
 
         <activity

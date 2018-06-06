@@ -1,41 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/app_full_name"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="33sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_play"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/dice"
-        android:text="@string/play"
-        android:textSize="33sp" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/app_full_name"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="33sp" />
 
-    <Button
-        android:id="@+id/btn_settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/settings"
-        android:text="@string/settings"
-        android:textSize="33sp" />
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/dice"
+            android:text="@string/play"
+            android:textSize="33sp" />
 
-    <Button
-        android:id="@+id/btn_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/info"
-        android:text="@string/about_game"
-        android:textSize="33sp" />
+        <Button
+            android:id="@+id/btn_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/settings"
+            android:text="@string/settings"
+            android:textSize="33sp" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/info"
+            android:text="@string/about_game"
+            android:textSize="33sp" />
+
+    </LinearLayout>
+</ScrollView>

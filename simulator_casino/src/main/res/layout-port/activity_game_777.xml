@@ -82,36 +82,30 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="@string/play"
+        android:textSize="35sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bet"
-            android:textColor="@android:color/holo_green_dark"
-            android:textSize="30sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bet"
+        android:layout_gravity="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="30sp" />
 
-        <EditText
-            android:id="@+id/bet_edit"
-            android:layout_width="170sp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:maxLength="10"
-            android:text="10"
-            android:textAlignment="center"
-            android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/btn_play"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/play"
-            android:textSize="25sp" />
-
-    </LinearLayout>
+    <EditText
+        android:id="@+id/bet_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="10"
+        android:text="10"
+        android:textAlignment="center"
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
