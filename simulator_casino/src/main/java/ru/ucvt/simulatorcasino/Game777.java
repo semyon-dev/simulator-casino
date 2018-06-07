@@ -36,7 +36,7 @@ public class Game777 extends Activity {
 
     private RotateAnimation rotate;
 
-    private Game777_Logic MyGame777 = new Game777_Logic();
+    private Game777Logic MyGame777 = new Game777Logic();
     private Language language = new Language();
 
     @Override
@@ -234,7 +234,7 @@ public class Game777 extends Activity {
     private void dialog(int sum) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Game777.this);  //выводим сообщение о выиграше
         mBuilder.setTitle(getString(R.string.hurray))
-                .setMessage(getString(R.string.win) + " " + sum + " $")
+                .setMessage(getString(R.string.win) + " " + sum + "$")
                 .setCancelable(false)
                 .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                     @Override

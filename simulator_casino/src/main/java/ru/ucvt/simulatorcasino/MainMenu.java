@@ -84,7 +84,9 @@ public class MainMenu extends Activity {
     @Override
     public void onBackPressed() {
         if (back_pressed + 2000 > System.currentTimeMillis()) {
-            super.onBackPressed();
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
         } else {
             Toasty.info(this, "Нажмите еще раз для выхода").show();
         }

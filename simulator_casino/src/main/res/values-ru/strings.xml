@@ -21,15 +21,15 @@
     <string name="wait_game">Подождите пока закончится игра!</string>
     <string name="not_enough_money">Недостаточно денег!</string>
     <string name="rules_game_777">При выпадении пяти одинаковых карт
-        вы получаете x15, при 4 карт x10, при 3 карт x5\nИначе баланс уменьшается на сумму ставки.
+        вы получаете x15, при 4 карт x10, при 3 карт x3\nИначе баланс уменьшается на сумму ставки.
     </string>
     <string name="crypto">Крипта</string>
     <string name="rules_game_crypto">При выпадении 6 одинаковых картинок вы получаете x20 \nПри 5 - x15, при 4 - x7, при 3 - x3.
         \nТакже есть секретные комбинации, они суммируются.
     </string>
-    <string name="bet_very_low">Минимальная ставка 1 $!</string>
+    <string name="bet_very_low">Минимальная ставка 1$!</string>
     <string name="github">Исходный код досутпен на GitHub :\nSemyonNovikov/SimulatorCasino</string>
-    <string name="new_money">Ваш баланс теперь 100 $!</string>
-    <string name="new_money_get">Пополнить баланс до 100 $</string>
-    <string name="balance_more_than_zero">Ваш баланс больше чем 0 $!</string>
+    <string name="new_money">Ваш баланс теперь 100$!</string>
+    <string name="new_money_get">Пополнить баланс до 100$</string>
+    <string name="balance_more_than_zero">Ваш баланс больше чем 0$!</string>
 </resources>

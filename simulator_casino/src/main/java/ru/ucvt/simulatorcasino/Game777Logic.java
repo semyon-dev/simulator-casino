@@ -5,7 +5,7 @@ import android.content.Context;
 import java.util.Arrays;
 import java.util.Random;
 
-class Game777_Logic {
+class Game777Logic {
 
     private int[] CardsArray = new int[5];
     private Balance balance = new Balance();

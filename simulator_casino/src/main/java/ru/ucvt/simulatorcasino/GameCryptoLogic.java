@@ -1,14 +1,11 @@
 package ru.ucvt.simulatorcasino;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.Random;
 
-import es.dmoral.toasty.Toasty;
-
-class GameCrypto_Logic {
+class GameCryptoLogic {
 
     private int[] array = new int[6];
     private Balance balance = new Balance();

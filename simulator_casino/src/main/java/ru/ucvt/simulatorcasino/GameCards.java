@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.ScaleAnimation;
@@ -47,7 +48,7 @@ public class GameCards extends Activity {
 
         setContentView(R.layout.activity_game_cards);
 
-        txt_balans = (TextView) findViewById(R.id.text_balans);
+        txt_balans = (TextView) findViewById(R.id.txt_balance);
         txt_balans.setText(Integer.toString(balance.Get(getBaseContext())));
 
         pic1 = (ImageView) findViewById(R.id.pic1);
@@ -132,6 +133,8 @@ public class GameCards extends Activity {
                 if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {
                     Toasty(getString(R.string.bet_very_low));
                 } else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+
                     btn_play.setEnabled(false);
 
                     bet = String.valueOf(bet_edit.getText());
@@ -180,6 +183,7 @@ public class GameCards extends Activity {
                         compare();                  // метод сравнивания картинок
                         mTimer = null;
                         btn_play.setEnabled(true);
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
                     } else {
 
                         if (n < 15) {
@@ -221,7 +225,7 @@ public class GameCards extends Activity {
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCards.this);  //выводим сообщение о выиграше
                 mBuilder.setTitle(R.string.hurray)
-                        .setMessage(getString(R.string.win) + sum + " $")
+                        .setMessage(getString(R.string.win) + sum + "$")
                         .setCancelable(false)
                         .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                             @Override

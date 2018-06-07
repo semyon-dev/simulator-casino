@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -35,7 +36,7 @@ public class GameCrypto extends Activity {
 
     private int n = 0, sum;
     private String s1, bet;
-    private GameCrypto_Logic GameCrypto_Logic = new GameCrypto_Logic();
+    private GameCryptoLogic GameCrypto_Logic = new GameCryptoLogic();
 
     private AnimationSet set;
     private Animation animation;
@@ -47,7 +48,7 @@ public class GameCrypto extends Activity {
         language.Set(this);
         setContentView(R.layout.activity_game_crypto);
 
-        txt_balance = (TextView) findViewById(R.id.text_balans);  // инициализируем все элементы
+        txt_balance = (TextView) findViewById(R.id.txt_balance);  // инициализируем все элементы
         txt_balance.setText(Integer.toString(GameCrypto_Logic.Get(getBaseContext())));
 
         pic1 = (ImageView) findViewById(R.id.pic1);
@@ -161,6 +162,7 @@ public class GameCrypto extends Activity {
                         }
                         mTimer = null;
                         btn_play.setEnabled(true);
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
                     } else {
                         if (n < 10) {
                             s1 = GameCrypto_Logic.AddElements(0);
@@ -231,6 +233,7 @@ public class GameCrypto extends Activity {
                 if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {
                     Toasty(getString(R.string.bet_very_low));
                 } else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
                     btn_play.setEnabled(false);
 
@@ -259,7 +262,7 @@ public class GameCrypto extends Activity {
     private void dialog(int sum) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCrypto.this);  //выводим сообщение о выиграше
         mBuilder.setTitle(getString(R.string.hurray))
-                .setMessage(getString(R.string.win) + " " + sum + " $")
+                .setMessage(getString(R.string.win) + " " + sum + "$")
                 .setCancelable(false)
                 .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                     @Override

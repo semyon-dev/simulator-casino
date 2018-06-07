@@ -18,10 +18,10 @@
             android:gravity="center"
             android:text="@string/balance"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="35sp" />
+            android:textSize="33sp" />
 
         <TextView
-            android:id="@+id/text_balans"
+            android:id="@+id/txt_balance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="0"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="35sp" />
+            android:textSize="33sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,15 +43,14 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/pic1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/game1pic1" />
+            android:src="@drawable/game1pic2" />
 
         <ImageView
             android:id="@+id/pic2"
@@ -65,101 +64,100 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/game1pic3" />
+            android:src="@drawable/game1pic2" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_play"
-            android:layout_width="match_parent"
-            android:layout_height="82dp"
-            android:text="@string/play"
-            android:textSize="30sp" />
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/bet"
             android:textColor="@android:color/holo_green_dark"
-            android:textSize="35sp" />
+            android:textSize="30sp" />
 
         <EditText
-            android:textSize="40sp"
             android:id="@+id/bet_edit"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
+            android:layout_width="170sp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLength="10"
-            android:text="10" />
+            android:text="10"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/play"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/x2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2x"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/half"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="/2"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MIN"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="MAX"
+            android:textSize="30sp" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/x2"
-                android:layout_weight="1"
-                android:textSize="30sp"
-                android:text="2x"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/half"
-                android:layout_weight="1"
-                android:textSize="30sp"
-                android:text="/2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/min"
-                android:layout_weight="1"
-                android:textSize="30sp"
-                android:text="MIN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/max"
-                android:layout_weight="1"
-                android:textSize="30sp"
-                android:text="MAX"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
+                android:id="@+id/btn_rules"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableRight="@drawable/rules"
+                android:text="@string/rules"
+                android:textSize="20sp" />
 
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_rules"
-                    android:layout_width="0sp"
-                    android:layout_height="80sp"
-                    android:layout_weight="1"
-                    android:drawableRight="@drawable/rules"
-                    android:text="@string/rules"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

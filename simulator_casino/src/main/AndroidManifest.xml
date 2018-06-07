@@ -37,24 +37,25 @@
         <activity
             android:name=".GameCards"
             android:configChanges="locale"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullUser">
         </activity>
 
         <activity
             android:name=".Game777"
-            android:configChanges="locale">
+            android:configChanges="locale"
+            android:screenOrientation="fullUser">
         </activity>
 
         <activity
             android:name=".Settings"
             android:configChanges="locale"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullUser">
         </activity>
 
         <activity
             android:name=".GameCrypto"
             android:configChanges="locale"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullUser">
         </activity>
 
     </application>
