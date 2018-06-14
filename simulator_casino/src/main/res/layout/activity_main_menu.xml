@@ -34,13 +34,5 @@
             android:text="@string/settings"
             android:textSize="25sp" />
 
-        <Button
-            android:id="@+id/btn_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/info"
-            android:text="@string/about_game"
-            android:textSize="25sp" />
-
     </LinearLayout>
 </ScrollView>
