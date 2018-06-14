@@ -47,7 +47,7 @@ class Game777Logic {
         } else if (max == 3) {
             sum = bet * 5;
         } else {
-            sum = bet - bet * 2;
+            sum = bet * -1;
         }
         balance.Update(sum, context);
         return sum; //возвращаем сумму выиграша

@@ -9,13 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import es.dmoral.toasty.Toasty;
 
 public class MainMenu extends Activity {
 
-    Button btn_play, btn_info, btn_settings;
-    Language language = new Language();
+    TypeFaceUtil typeFaceUtil = new TypeFaceUtil();
+
+    private Button btn_play, btn_info, btn_settings;
+    private Language language = new Language();
     private static long back_pressed;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +28,11 @@ public class MainMenu extends Activity {
 
         language.Set(getBaseContext());
 
+        typeFaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/lato_bold.ttf");
+
         setContentView(R.layout.activity_main_menu);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         btn_play = (Button) findViewById(R.id.btn_play);
         btn_play.setOnClickListener(btn_play_click);
@@ -88,7 +97,7 @@ public class MainMenu extends Activity {
             intent.addCategory(Intent.CATEGORY_HOME);
             startActivity(intent);
         } else {
-            Toasty.info(this, "Нажмите еще раз для выхода").show();
+            Toasty.info(this, getString(R.string.press_again_exit)).show();
         }
         back_pressed = System.currentTimeMillis();
     }

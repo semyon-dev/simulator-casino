@@ -239,7 +239,7 @@ public class GameCards extends Activity {
 
                 set_balance(sum * 5);    //в случае выиграша увеличиваем баланс на 500
             } else {
-                set_balance(sum - sum * 2);
+                set_balance(sum * -1);
             }
         }
     }

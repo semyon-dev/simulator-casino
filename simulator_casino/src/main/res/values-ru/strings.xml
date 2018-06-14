@@ -3,7 +3,7 @@
     <string name="about_game">Об игре</string>
     <string name="settings">Настройки</string>
     <string name="play">Играть</string>
-    <string name="version">Версия: 0.6.2 BETA</string>
+    <string name="version">Версия: 0.6.3 BETA</string>
     <string name="win">Вы выиграли </string>
     <string name="author">Автор : Семён Новиков</string>
     <string name="cards">Карты</string>
@@ -32,4 +32,5 @@
     <string name="new_money">Ваш баланс теперь 100$!</string>
     <string name="new_money_get">Пополнить баланс до 100$</string>
     <string name="balance_more_than_zero">Ваш баланс больше чем 0$!</string>
+    <string name="press_again_exit">Нажмите еще раз для выхода</string>
 </resources>

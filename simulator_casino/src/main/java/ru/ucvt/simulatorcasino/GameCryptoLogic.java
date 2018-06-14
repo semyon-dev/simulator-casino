@@ -25,9 +25,10 @@ class GameCryptoLogic {
 
         Arrays.sort(array); // сортируем массив
 
-        int m = 1, sum = 0, max = 0;
+        int sum = 0;
+        byte max = 0, m = 1;
 
-        for (int i = 1; i < 6; i++) {
+        for (byte i = 1; i < 6; i++) {
             if (array[i] == array[i - 1]) {
                 m++;
             } else {
@@ -50,7 +51,7 @@ class GameCryptoLogic {
             if (array[1] == array[3] && array[3] == array[5]) {
                 sum += bet * 2;
             }
-            if (array[0] == array[2] && array[2] == array[5]) {
+            if (array[0] == array[2] && array[2] == array[4]) {
                 sum += bet * 2;
             }
             if (array[0] == array[1] && array[1] == array[2] && array[3] == array[4] && array[4] == array[5]) {
@@ -58,7 +59,7 @@ class GameCryptoLogic {
             }
 
         } else {
-            sum = bet - (bet * 2);
+            sum = bet * -1;
         }
         balance.Update(sum, context); // обновляем баланс
         return sum; //возвращаем сумму выиграша

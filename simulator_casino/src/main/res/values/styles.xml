@@ -1,6 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.DeviceDefault.NoActionBar">
+        <item name="android:typeface">serif</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

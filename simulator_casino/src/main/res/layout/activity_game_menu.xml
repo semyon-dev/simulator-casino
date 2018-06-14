@@ -22,23 +22,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/cards"
-            android:textSize="35sp"
-            android:drawableStart="@drawable/cards" />
+            android:textSize="25sp"
+            android:drawableStart="@drawable/game_cards" />
 
         <Button
             android:id="@+id/btn_game_777"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="777"
-            android:textSize="35sp"
-            android:drawableStart="@drawable/machine" />
+            android:textSize="25sp"
+            android:drawableStart="@drawable/game_777" />
 
         <Button
             android:id="@+id/btn_game_crypto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/crypto"
-            android:textSize="35sp"
-            android:drawableStart="@drawable/game3pic1" />
+            android:textSize="25sp"
+            android:drawableStart="@drawable/game_crypto" />
 </LinearLayout>
 </ScrollView>
