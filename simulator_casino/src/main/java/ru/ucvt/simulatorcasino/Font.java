@@ -20,8 +20,7 @@ class Font {
     private static final String APP_FONT_SIZE = "size";
     private SharedPreferences font_pref;
 
-
-    static void ChangeFont(Context context, String defaultFontNameToOverride, String customFontFileNameInAssets) {
+    static void SetFont(Context context, String defaultFontNameToOverride, String customFontFileNameInAssets) {
         try {
             final Typeface customFontTypeface = Typeface.createFromAsset(context.getAssets(), customFontFileNameInAssets);
             final Field defaultFontTypefaceField = Typeface.class.getDeclaredField(defaultFontNameToOverride);
@@ -33,8 +32,8 @@ class Font {
         }
     }
 
-    void ChangeSize(Configuration configuration, Context context, Resources resources) {
-        configuration.fontScale = GetFontSize(context);
+    void SetSize(Configuration configuration, Context context, Resources resources) {
+        configuration.fontScale = GetTextSize(context);
         DisplayMetrics metrics = resources.getDisplayMetrics();
         WindowManager wm = (WindowManager) context.getSystemService(WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(metrics);
@@ -42,7 +41,7 @@ class Font {
         context.getResources().updateConfiguration(configuration, metrics);
     }
 
-    float GetFontSize(Context context) {
+    float GetTextSize(Context context) {
         font_pref = PreferenceManager.getDefaultSharedPreferences(context);
         float font_size = font_pref.getFloat(APP_FONT_SIZE, 1.0f);
         return font_size;

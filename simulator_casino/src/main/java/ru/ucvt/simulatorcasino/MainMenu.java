@@ -25,8 +25,8 @@ public class MainMenu extends Activity {
 
         language.Set(getBaseContext());
 
-        font.ChangeFont(getApplicationContext(), "SERIF", "fonts/lato_bold.ttf");
-        font.ChangeSize(getResources().getConfiguration(), getBaseContext(), getResources());
+        font.SetFont(getApplicationContext(), "SERIF", "fonts/lato_bold.ttf");
+        font.SetSize(getResources().getConfiguration(), getBaseContext(), getResources());
 
         setContentView(R.layout.activity_main_menu);
 

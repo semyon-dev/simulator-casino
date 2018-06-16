@@ -10,19 +10,19 @@
         android:entries="@array/languages"
         android:entryValues="@array/languages"
         android:key="language"
-        android:title="@string/change_language" />
+        android:title="@string/language" />
 
     <ListPreference
         android:defaultValue="1.0"
-        android:dialogTitle="Choose font size"
-        android:entries="@array/font_size"
-        android:entryValues="@array/font_size"
-        android:key="font_size"
-        android:title="Change font size" />
+        android:dialogTitle="@string/choose_text_size"
+        android:entries="@array/text_size"
+        android:entryValues="@array/text_size"
+        android:key="text_size"
+        android:title="@string/text_size" />
 
     <Preference
         android:key="github_link"
-        android:title="Проект на гитхабе" />
+        android:title="@string/github" />
 
     <Preference android:title="@string/version" />
 
