@@ -70,7 +70,7 @@
         <Button
             android:layout_gravity="center"
             android:id="@+id/btn_play"
-            android:layout_width="219sp"
+            android:layout_width="220sp"
             android:layout_height="wrap_content"
             android:text="@string/play"
             android:textSize="40sp" />
@@ -89,7 +89,6 @@
             android:layout_weight="1"
             android:src="@drawable/game3pic4" />
 
-
         <ImageView
             android:id="@+id/pic5"
             android:layout_width="wrap_content"
@@ -105,7 +104,7 @@
             android:src="@drawable/game3pic6" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="75sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/bet"
@@ -117,7 +116,7 @@
             android:id="@+id/bet_edit"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:layout_width="150sp"
+            android:layout_width="145sp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:maxLength="10"

@@ -34,8 +34,9 @@ public class GameCrypto extends Activity {
     private Timer mTimer;
     private GameCrypto.MyTimerTask mMyTimerTask;
 
-    private int n = 0, sum;
-    private String s1, bet;
+    private int sum, bet = 0, bet_final = 0;
+    private byte n = 0;
+    private String s1;
     private GameCryptoLogic GameCrypto_Logic = new GameCryptoLogic();
 
     private AnimationSet set;
@@ -100,12 +101,14 @@ public class GameCrypto extends Activity {
         @Override
         public void onClick(View btn) {
 
-            int bet, max;
+            int max = GameCrypto_Logic.Get(getBaseContext());
 
             try {
                 bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
-                max = GameCrypto_Logic.Get(getBaseContext());
+            } catch (Exception ex) {
+            }
 
+            try {
                 switch (btn.getId()) {
                     case R.id.x2:
                         if (bet == 0) {
@@ -155,7 +158,7 @@ public class GameCrypto extends Activity {
                         mTimer.cancel();
 
                         // метод сравнивания картинок
-                        sum = GameCrypto_Logic.Compare(Integer.valueOf(bet), getBaseContext());
+                        sum = GameCrypto_Logic.Compare(bet_final, getBaseContext());
                         txt_balance.setText(Integer.toString(GameCrypto_Logic.Get(getBaseContext())));
                         if (sum > 0) {
                             dialog(sum);
@@ -227,17 +230,22 @@ public class GameCrypto extends Activity {
         @Override
         public void onClick(View v) {
 
-            if (Integer.valueOf(String.valueOf(bet_edit.getText())) > GameCrypto_Logic.Get(getBaseContext())) {
+            try {
+                bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
+            } catch (Exception ex) {
+            }
+
+            if (bet > GameCrypto_Logic.Get(getBaseContext())) {
                 Toasty(getString(R.string.not_enough_money));
             } else {
-                if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {
+                if (bet < 1) {
                     Toasty(getString(R.string.bet_very_low));
                 } else {
+                    bet_final = Integer.valueOf(String.valueOf(bet_edit.getText()));
+
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
                     btn_play.setEnabled(false);
-
-                    bet = String.valueOf(bet_edit.getText());
 
                     pic1.startAnimation(set);
                     pic2.startAnimation(set);
@@ -262,7 +270,7 @@ public class GameCrypto extends Activity {
     private void dialog(int sum) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCrypto.this);  //выводим сообщение о выиграше
         mBuilder.setTitle(getString(R.string.hurray))
-                .setMessage(getString(R.string.win) + " " + sum + "$")
+                .setMessage(getString(R.string.win) + " " + sum + " $")
                 .setCancelable(false)
                 .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                     @Override

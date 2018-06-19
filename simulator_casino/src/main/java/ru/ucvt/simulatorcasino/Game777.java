@@ -28,14 +28,14 @@ public class Game777 extends Activity {
     private ImageView pic1, pic2, pic3, pic4, pic5;
     private Button btn_play, btn_rules, max, min, x2, half;
     private TextView txt_balance;
-    private int n = 0, sum;         //n - счётчик для таймера
-    private String s1, bet;
+    private int sum, bet, bet_final;
+    private byte n = 0;         //n - счётчик для таймера
+    private String s1;
 
     private Timer mTimer;
     private Game777.MyTimerTask mMyTimerTask;
 
     private RotateAnimation rotate;
-
     private Game777Logic MyGame777 = new Game777Logic();
     private Language language = new Language();
 
@@ -80,24 +80,28 @@ public class Game777 extends Activity {
         rotate.setRepeatCount(50);
     }
 
-    // создаем обработчик нажатия
+    // button "play"
     View.OnClickListener btn_play_Click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
+            try {
+                bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
+            } catch (Exception ex) {
+            }
 
-            if (Integer.valueOf(String.valueOf(bet_edit.getText())) > MyGame777.Get(getBaseContext())) {
+            if (bet > MyGame777.Get(getBaseContext())) {
                 Toasty(getString(R.string.not_enough_money));
             } else {
-                if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {
+                if (bet < 1) {
                     Toasty(getString(R.string.bet_very_low));
                 } else {
+
+                    bet_final = Integer.valueOf(String.valueOf(bet_edit.getText()));
 
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
                     btn_play.setEnabled(false);
-
-                    bet = String.valueOf(bet_edit.getText());
 
                     pic1.startAnimation(rotate);
                     pic2.startAnimation(rotate);
@@ -121,12 +125,14 @@ public class Game777 extends Activity {
     View.OnClickListener bet_sum = new View.OnClickListener() {
         @Override
         public void onClick(View btn) {
-            int bet, max;
 
+            int max = MyGame777.Get(getBaseContext());
             try {
                 bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
-                max = MyGame777.Get(getBaseContext());
+            } catch (Exception ex) {
+            }
 
+            try {
                 switch (btn.getId()) {
                     case R.id.x2:
                         if (bet == 0) {
@@ -176,7 +182,7 @@ public class Game777 extends Activity {
                         mTimer.cancel();
 
                         // метод сравнивания картинок
-                        sum = MyGame777.Compare(Integer.valueOf(bet), getBaseContext());
+                        sum = MyGame777.Compare(bet_final, getBaseContext());
                         txt_balance.setText(Integer.toString(MyGame777.Get(getBaseContext())));
                         if (sum > 0) {
                             dialog(sum);
@@ -234,7 +240,7 @@ public class Game777 extends Activity {
     private void dialog(int sum) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(Game777.this);  //выводим сообщение о выиграше
         mBuilder.setTitle(getString(R.string.hurray))
-                .setMessage(getString(R.string.win) + " " + sum + "$")
+                .setMessage(getString(R.string.win) + " " + sum + " $")
                 .setCancelable(false)
                 .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                     @Override

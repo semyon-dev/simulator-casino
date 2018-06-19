@@ -29,8 +29,9 @@ public class GameCards extends Activity {
     private ImageView pic1, pic2, pic3;
     private Button btn_play, btn_rules, max, min, x2, half;
     private Random random = new Random();
-    private int n = 0;                  //n - счётчик для таймера
-    private String s1, s2, s3, bet;
+    private byte n = 0;                  //n - счётчик для таймера
+    private int bet = 0, bet_final = 0;
+    private String s1, s2, s3;
 
     private Timer mTimer;
     private MyTimerTask mMyTimerTask;
@@ -82,12 +83,14 @@ public class GameCards extends Activity {
         @Override
         public void onClick(View btn) {
 
-            int bet, max;
+            int max = balance.Get(getBaseContext());
 
             try {
                 bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
-                max = balance.Get(getBaseContext());
+            } catch (Exception ex) {
+            }
 
+            try {
                 switch (btn.getId()) {
                     case R.id.x2:
                         if (bet == 0) {
@@ -127,17 +130,22 @@ public class GameCards extends Activity {
         @Override
         public void onClick(View v) {
 
-            if (Integer.valueOf(String.valueOf(bet_edit.getText())) > balance.Get(getBaseContext())) {
+            try {
+                bet = Integer.valueOf(String.valueOf(bet_edit.getText()));
+            } catch (Exception ex) {
+            }
+
+            if (bet > balance.Get(getBaseContext())) {
                 Toasty(getString(R.string.not_enough_money));
             } else {
-                if (Integer.valueOf(String.valueOf(bet_edit.getText())) < 1) {
+                if (bet < 1) {
                     Toasty(getString(R.string.bet_very_low));
                 } else {
+                    bet_final = Integer.valueOf(String.valueOf(bet_edit.getText()));
+
                     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
                     btn_play.setEnabled(false);
-
-                    bet = String.valueOf(bet_edit.getText());
 
                     mTimer = new Timer();
                     mMyTimerTask = new MyTimerTask();
@@ -218,14 +226,12 @@ public class GameCards extends Activity {
         }
 
         void compare() {
-            int sum;
-            sum = Integer.valueOf(bet);
 
             if (s1.equals(s2) & s2.equals(s3)) {     //если все картинки одинаковые
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(GameCards.this);  //выводим сообщение о выиграше
                 mBuilder.setTitle(R.string.hurray)
-                        .setMessage(getString(R.string.win) + sum + "$")
+                        .setMessage(getString(R.string.win) + bet_final * 5 + " $")
                         .setCancelable(false)
                         .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
                             @Override
@@ -237,9 +243,9 @@ public class GameCards extends Activity {
                 AlertDialog malert = mBuilder.create();
                 malert.show();
 
-                set_balance(sum * 5);    //в случае выиграша увеличиваем баланс на 500
+                set_balance(bet_final * 5);    //в случае выиграша увеличиваем баланс на 500
             } else {
-                set_balance(sum * -1);
+                set_balance(bet_final * -1);
             }
         }
     }
