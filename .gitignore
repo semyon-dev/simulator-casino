@@ -1,5 +1,8 @@
 *.iml
+*.idea
 .gradle
+*.xml
+*.bat
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries

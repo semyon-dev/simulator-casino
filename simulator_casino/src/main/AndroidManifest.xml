@@ -58,6 +58,12 @@
             android:screenOrientation="fullUser">
         </activity>
 
+        <activity
+            android:name=".Rating"
+            android:configChanges="locale"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

@@ -27,6 +27,14 @@
             android:textSize="25sp" />
 
         <Button
+            android:id="@+id/btn_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/rating"
+            android:text="rating"
+            android:textSize="25sp" />
+
+        <Button
             android:id="@+id/btn_settings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
