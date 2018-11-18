@@ -1,109 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:textColor="@color/colorGreen"
+        android:textColor="@color/colorPrimary"
         android:id="@+id/textView2"
-        android:textSize="25sp"
+        android:textSize="26sp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TOP 10 players" />
+        android:text="TOP players" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="10sp" />
-
-    <TextView
-        android:id="@+id/t1"
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/t2"
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/t3"
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
-    <TextView
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:textSize="20sp"/>
 
 </LinearLayout>

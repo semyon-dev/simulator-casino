@@ -49,7 +49,7 @@ public class MainMenu extends Activity {
         if (nickname.equals("null")){
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainMenu.this);  //выводим сообщение о выиграше
             mBuilder.setTitle("Welcome!")
-                    .setMessage("Your should create nickname")
+                    .setMessage("Your should create nickname for rating!")
                     .setCancelable(false)
                     .setView(input)
                     .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
