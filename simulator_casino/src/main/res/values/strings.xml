@@ -35,4 +35,7 @@
     <string name="new_money_get">Update balance to 100$</string>v
     <string name="balance_more_than_zero">Your balance more than 0$!</string>
     <string name="press_again_exit">Press again to exit</string>
+    <string name="welcome">Welcome!</string>
+    <string name="CreateNickname">"Your should create nickname for rating!"</string>
+    <string name="rating">Rating</string>
 </resources>

@@ -35,4 +35,9 @@
     <string name="new_money_get">Пополнить баланс до 100$</string>
     <string name="balance_more_than_zero">Ваш баланс больше чем 0$!</string>
     <string name="press_again_exit">Нажмите еще раз для выхода</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="CreateNickname">"Придумайте ваш ник для отображения в рейтинге!"</string>
+    <string name="rating">Рейтинг</string>
+
+
 </resources>

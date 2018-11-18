@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,11 +46,13 @@ public class MainMenu extends Activity {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
         input.setLayoutParams(lp);
+        input.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        input.setGravity(Gravity.CENTER);
 
         if (nickname.equals("null")){
-            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainMenu.this);  //выводим сообщение о выиграше
-            mBuilder.setTitle("Welcome!")
-                    .setMessage("Your should create nickname for rating!")
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainMenu.this);
+            mBuilder.setTitle(getString(R.string.welcome))
+                    .setMessage(getString(R.string.CreateNickname))
                     .setCancelable(false)
                     .setView(input)
                     .setNegativeButton("ОК", new DialogInterface.OnClickListener() {
@@ -96,7 +99,7 @@ public class MainMenu extends Activity {
     };
 
 
-    // создаем обработчик нажатия для btn_play
+    // создаем обработчик нажатия для btn_rating
     View.OnClickListener btn_rating_click = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
