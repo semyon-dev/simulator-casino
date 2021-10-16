@@ -4,12 +4,12 @@ Play different games and develop your strategies! \
 There are 3 interesting games, you can win up to x20. \
 Only real random!
 
-## Supported languages :
+## Supported languages
 
 * English
 * Русский
 
-## Screenshots :
+## Screenshots
 
 ![](https://github.com/SemyonNovikov/SimulatorCasino/blob/master/screen1.png) 
 ![](https://github.com/SemyonNovikov/SimulatorCasino/blob/master/screen2.png)
